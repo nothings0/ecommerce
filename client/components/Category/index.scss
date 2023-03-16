@@ -1,0 +1,29 @@
+.category {
+  background-color: var(--main-bg);
+
+  &__container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px 0 50px 0;
+  }
+  &__item {
+    background-color: #fff;
+
+    width: 25%;
+
+    padding: 18px 12px;
+    border-right: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    img {
+      width: 50px;
+      height: auto;
+    }
+  }
+}

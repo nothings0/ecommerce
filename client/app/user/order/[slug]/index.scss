@@ -1,0 +1,85 @@
+.order {
+  &-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &-time {
+    opacity: 0.9;
+  }
+  &-name {
+    font-size: 20px;
+  }
+  &-info {
+    margin-top: 1.6rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    gap: 10px;
+    &--box {
+      background-color: #fff;
+      padding: 8px;
+      border-radius: 5px;
+    }
+    &--title {
+      font-size: 17px;
+      font-weight: 500;
+    }
+    &--content {
+      margin-top: 1rem;
+      font-size: 15px;
+    }
+  }
+  &-wrap {
+    margin-top: 1rem;
+    padding: 5px 10px;
+    background: #fff;
+  }
+  &-product {
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+    border-top: 1px solid #ccc;
+    &--img {
+      flex: 1;
+      img {
+        width: 100px;
+        height: auto;
+      }
+    }
+    &--name {
+      flex: 3;
+    }
+    &--quantity {
+      flex: 1;
+      text-align: center;
+    }
+    &--price {
+      flex: 1;
+      text-align: center;
+    }
+  }
+  &-header {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    &--img {
+      flex: 4;
+      padding-left: 2rem;
+    }
+    &--quantity {
+      flex: 1;
+      text-align: center;
+    }
+    &--price {
+      flex: 1;
+      text-align: center;
+    }
+  }
+  &-button {
+    margin-top: 1.6rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0 2rem;
+  }
+}

@@ -1,0 +1,9 @@
+.category-page {
+  margin-top: var(--main-header-h);
+  min-height: 100vh;
+  background: var(--main-bg);
+  &__container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+}

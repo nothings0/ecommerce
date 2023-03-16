@@ -1,0 +1,31 @@
+.button {
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-transform: capitalize;
+  &.sm {
+    padding: 8px;
+  }
+  &.md {
+    padding: 8px 16px;
+  }
+  &.lg {
+    padding: 8px 28px;
+  }
+  &.primary {
+    background-color: var(--main-color);
+    color: #fff;
+  }
+  &.ok {
+    background: linear-gradient(to bottom, #14cb00, #009f00);
+    color: #fff;
+  }
+  &.cancel {
+    background: linear-gradient(to bottom, #929292, #696969);
+    color: #fff;
+  }
+}

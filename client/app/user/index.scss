@@ -1,0 +1,36 @@
+.user {
+  position: relative;
+  min-height: 100vh;
+  margin-top: var(--main-header-h);
+  .side-bar {
+    padding: 20px;
+    width: var(--filter-width);
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: var(--filter-bg);
+    &--item {
+      display: flex;
+      align-items: center;
+      gap: 0 1rem;
+      text-transform: capitalize;
+      margin-bottom: 0.5rem;
+      padding: 5px;
+      border-radius: 8px;
+      cursor: pointer;
+      &.active {
+        background-color: var(--main-bg);
+        font-weight: 500;
+      }
+    }
+  }
+  &-main {
+    padding-left: var(--filter-width);
+    min-height: 100vh;
+    background-color: var(--main-bg);
+    .container {
+      padding: 20px;
+    }
+  }
+}

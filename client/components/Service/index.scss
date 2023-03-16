@@ -1,0 +1,36 @@
+.service {
+  background-color: var(--main-bg);
+
+  &__container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 30px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__item {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 0 10px;
+    padding: 8px 10px;
+    cursor: pointer;
+    box-shadow: 0px 1px 5px #ccc;
+    background-color: #fff;
+    &:hover {
+      box-shadow: 2px 3px 10px #ccc;
+    }
+    &__text {
+      text-transform: capitalize;
+      h4 {
+        font-weight: 600;
+        font-size: 14px;
+      }
+      p {
+        font-weight: 400;
+        font-size: 12px;
+      }
+    }
+  }
+}

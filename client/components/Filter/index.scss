@@ -1,0 +1,38 @@
+.filter {
+  padding: 20px;
+  width: var(--filter-width);
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: var(--filter-bg);
+  &__wrap {
+    margin-bottom: 20px;
+  }
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-transform: capitalize;
+    font-weight: 500;
+  }
+  &__list {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px 0;
+    // transition: all 2s ease-in;
+    // transform: translateY(-20px);
+    display: none;
+    &.active {
+      display: block;
+      //   height: 100%;
+      //   transform: translate(0);
+    }
+    &__item {
+      display: flex;
+      align-items: center;
+      gap: 0 20px;
+    }
+  }
+}

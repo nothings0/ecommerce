@@ -1,0 +1,222 @@
+.payment {
+  min-height: 100vh;
+  background-color: var(--main-bg);
+  margin-top: var(--main-header-h);
+  .container {
+    display: flex;
+    gap: 0 20px;
+    width: var(--max-width);
+    margin: 0 auto;
+    padding: 20px 0;
+  }
+  .main-payment {
+    width: 70%;
+    background-color: #fff;
+    padding: 20px;
+    h4 {
+      font-size: 16px;
+      text-transform: capitalize;
+    }
+    & > h3 {
+      font-size: 18px;
+      text-transform: capitalize;
+      margin-bottom: 20px;
+    }
+    .form {
+      margin-top: 30px;
+      padding-top: 30px;
+      border-top: 1px solid #c1c1c5;
+      &-payment {
+        .payment-item {
+          display: flex;
+          align-items: center;
+          gap: 0 20px;
+          margin-top: 10px;
+        }
+      }
+      &-button {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 0 30px;
+      }
+      &-address {
+        .address-item {
+          display: flex;
+          align-items: center;
+          margin-top: 15px;
+          gap: 0 15px;
+          label {
+            width: 120px;
+          }
+          input,
+          select {
+            flex: 1;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 8px 15px;
+            font-size: 16px;
+          }
+        }
+        .address-container {
+          .box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            h4 {
+              font-size: 18px;
+              font-weight: 400;
+              display: flex;
+              gap: 0 5px;
+              p {
+                font-weight: 500;
+              }
+            }
+            span {
+              color: var(--main-color);
+              cursor: pointer;
+              font-size: 18px;
+            }
+          }
+        }
+      }
+      &-confirm {
+        .confirm-item {
+          font-size: 18px;
+          margin-top: 20px;
+          span {
+            color: var(--main-color);
+          }
+        }
+      }
+    }
+  }
+  .order-detail {
+    flex: 1;
+    &--container {
+      padding: 20px;
+      background-color: #fff;
+    }
+    p {
+      color: #808089;
+      font-size: 14px;
+    }
+    &--top {
+      &--header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        h3 {
+          font-size: 18px;
+          font-weight: 600;
+        }
+        a {
+          color: #0b74e5;
+          font-size: 14px;
+        }
+      }
+      &--text {
+        display: flex;
+        align-items: center;
+        gap: 0 8px;
+        margin-top: 6px;
+        position: relative;
+        span {
+          color: #0b74e5;
+          font-size: 14px;
+          cursor: pointer;
+        }
+      }
+    }
+    &--middle {
+      margin: 16px 0;
+      span {
+        color: #38383d;
+      }
+    }
+    &--text {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 4px;
+    }
+    &--total {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      h5 {
+        font-size: 18px;
+        font-weight: 400;
+      }
+      span {
+        font-size: 20px;
+        color: var(--main-color);
+        font-weight: 600;
+      }
+    }
+    &--list {
+      @keyframes show {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0px);
+        }
+      }
+      margin-top: 10px;
+      padding: 5px 10px;
+      box-shadow: 1px 6px 4px 0px #ccc;
+      display: none;
+      animation: show ease-in 0.2s;
+
+      &.active {
+        display: block;
+      }
+    }
+    &--item {
+      display: flex;
+      align-items: center;
+      gap: 0 10px;
+      margin-bottom: 5px;
+      img {
+        width: 30px;
+        height: auto;
+      }
+    }
+  }
+}
+
+.progress {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 14px;
+  padding-bottom: 10px;
+  text-transform: capitalize;
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    border-radius: 8px;
+    background-color: rgb(219, 238, 255);
+  }
+  .line {
+    content: "";
+    position: absolute;
+    display: block;
+    z-index: 99;
+    bottom: 0;
+    left: 0;
+    height: 6px;
+    border-radius: 100px;
+    background-color: rgb(0, 171, 86);
+    transition: width 0.5s ease-in 0s;
+  }
+}
