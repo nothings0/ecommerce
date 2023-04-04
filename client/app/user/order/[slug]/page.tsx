@@ -20,7 +20,7 @@ const URL = "http://127.0.0.1:1337";
 const OrderDetail = (context: any) => {
   const [isOpen, setOpen] = useState<boolean>(false);
   const { slug } = context.params;
-  const { jwt } = useSelector((state: RootState) => state.user);
+  const { jwt, user } = useSelector((state: RootState) => state.user);
   const router = useRouter();
   const query = qs.stringify({
     populate: ["order_details.product.picture_cover", "status", "user"],
@@ -81,8 +81,7 @@ const OrderDetail = (context: any) => {
         <div className="order-info--box">
           <div className="order-info--title">Địa chỉ người nhận</div>
           <div className="order-info--content">
-            Địa chỉ: 52 tu liem, Phường Cửa Nam, Quận Hoàn Kiếm, Hà Nội, Việt
-            Nam
+            Địa chỉ: {user?.address.text}
           </div>
         </div>
         <div className="order-info--box">
@@ -142,7 +141,7 @@ const OrderDetail = (context: any) => {
           res?.data.attributes.status.data.attributes.name!
         ) ? (
           <Button type="primary" size="md">
-            <Link href="/storet">Mua sắm</Link>
+            <Link href="/product">Mua sắm</Link>
           </Button>
         ) : (
           <Button type="cancel" size="md" OnClick={() => setOpen(true)}>
@@ -155,8 +154,8 @@ const OrderDetail = (context: any) => {
         title="Huỷ đơn hàng"
         isOpen={isOpen}
         onOk={() => handleCancel(res?.data.id!)}
-        onCancel={() => setOpen(!isOpen)}
-        onOpen={() => setOpen(!isOpen)}
+        onCancel={setOpen}
+        onOpen={setOpen}
       >
         <p>Bạn có muốn hủy đơn hàng này không?</p>
       </Modal>

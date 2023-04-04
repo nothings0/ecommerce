@@ -6,12 +6,14 @@ interface ITypeInitState {
   supplier: string;
   category: string;
   cart: IProduct[];
+  wishlist: IProduct[];
 }
 
 const initialState: ITypeInitState = {
   supplier: "",
   category: "",
   cart: [],
+  wishlist: [],
 };
 
 const productSlice = createSlice({
@@ -36,9 +38,26 @@ const productSlice = createSlice({
       );
       state.cart = newCarts;
     },
+    removeCart: (state, actions) => {
+      const products: IProduct[] = actions.payload;
+      const oldProducts = state.cart;
+      const newCarts = oldProducts.filter((item1) =>
+        products.every((item2) => item2.id !== item1.id)
+      );
+      state.cart = newCarts;
+    },
+    setWishList: (state, actions) => {
+      checkAndModifyArray(state.wishlist, actions.payload);
+    },
   },
 });
 
-export const { setSupplier, setCart, setCategory, removeProduct } =
-  productSlice.actions;
+export const {
+  setSupplier,
+  setCart,
+  setCategory,
+  removeProduct,
+  removeCart,
+  setWishList,
+} = productSlice.actions;
 export default productSlice.reducer;

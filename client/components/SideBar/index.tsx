@@ -1,42 +1,22 @@
 "use client";
+import React from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import React from "react";
-import {
-  AiOutlineUser,
-  AiOutlineShoppingCart,
-  AiOutlineHeart,
-  AiOutlineSetting,
-  AiOutlineLogout,
-} from "react-icons/ai";
+import { AiOutlineLogout } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { handleLogout } from "@/redux/userSlice";
 import Cookies from "js-cookie";
+import "./index.scss";
 
-const SideBarData = [
-  {
-    path: "/user",
-    text: "thông tin tài khoản",
-    icon: <AiOutlineUser />,
-  },
-  {
-    path: "/user/order",
-    text: "quản lý đơn hàng",
-    icon: <AiOutlineShoppingCart />,
-  },
-  {
-    path: "/user/setting",
-    text: "cài đặt",
-    icon: <AiOutlineSetting />,
-  },
-  {
-    path: "/user/wishlist",
-    text: "sản phẩm yêu thích",
-    icon: <AiOutlineHeart />,
-  },
-];
+interface IProps {
+  data: {
+    path: string;
+    text: string;
+    icon: JSX.Element;
+  }[];
+}
 
-const SideBar = () => {
+const SideBar: React.FC<IProps> = ({ data }) => {
   const pathname = usePathname();
   const dispatch = useDispatch();
   const router = useRouter();
@@ -46,9 +26,10 @@ const SideBar = () => {
     router.push("/");
     Cookies.remove("token", { path: "/", domain: "localhost" });
   };
+
   return (
     <div className="side-bar">
-      {SideBarData.map((item, index) => (
+      {data.map((item, index) => (
         <Link
           href={`${item.path}`}
           className={`side-bar--item ${pathname === item.path ? "active" : ""}`}

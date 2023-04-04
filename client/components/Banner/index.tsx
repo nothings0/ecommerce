@@ -37,13 +37,7 @@ const Banner = () => {
   return (
     <div className="banner">
       <div className="banner__container">
-        <div className="banner__slide">
-          <BannerSlide
-            desc="from $199.99 or $41.62/mo for 24 mo. Footnote"
-            name="ipad s13 pro"
-            type="supercharged for pros"
-          />
-        </div>
+        <BannerSlide />
         <div className="banner__grid">
           {data.map((item, index) => (
             <BannerItem

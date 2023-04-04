@@ -16,22 +16,25 @@ interface IProps {
 const AddressForm: React.FC<IProps> = ({ onHandleIndex }) => {
   const { user, jwt } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
-  const arr = user?.address.split(", ");
+  const arr = user?.address && {
+    text: user?.address.text.split(", "),
+    code: user?.address.code.split(", "),
+  };
 
   const [province, setProvince] = useState<{ text: string; code: string }>({
-    text: arr ? arr[3] : "",
-    code: "",
+    text: arr ? arr.text[3] : "",
+    code: arr ? arr.code[2] : "",
   });
   const [district, setDistrict] = useState<{ text: string; code: string }>({
-    text: arr ? arr[2] : "",
-    code: "",
+    text: arr ? arr.text[2] : "",
+    code: arr ? arr.code[1] : "",
   });
   const [ward, setWard] = useState<{ text: string; code: string }>({
-    text: arr ? arr[1] : "",
-    code: "",
+    text: arr ? arr.text[1] : "",
+    code: arr ? arr.code[0] : "",
   });
 
-  const [subAddress, setSubAddress] = useState<string>(arr ? arr[0] : "");
+  const [subAddress, setSubAddress] = useState<string>(arr ? arr.text[0] : "");
   const [name, setName] = useState<string>(user ? user.name : "");
   const [phoneNumber, setPhoneNumber] = useState<string>(
     user ? user.phone_number : ""
@@ -40,12 +43,15 @@ const AddressForm: React.FC<IProps> = ({ onHandleIndex }) => {
   const [isEdit, setEdit] = useState<boolean>(false);
 
   const handleAddress = async () => {
-    const address = `${subAddress}, ${ward?.text}, ${district?.text}, ${province?.text}`;
+    const address = {
+      text: `${subAddress}, ${ward?.text}, ${district?.text}, ${province?.text}`,
+      code: `${ward?.code}, ${district?.code}, ${province?.code}`,
+    };
     try {
       const res = await axios.put(
         `http://127.0.0.1:1337/api/users/${user?.id}`,
         {
-          address,
+          address: address,
           name,
           phone_number: phoneNumber,
         },
@@ -79,7 +85,7 @@ const AddressForm: React.FC<IProps> = ({ onHandleIndex }) => {
             <>
               <div className="box">
                 <h4>
-                  Xác nhận giao hàng ở địa chỉ: <p>{user?.address}</p>
+                  Xác nhận giao hàng ở địa chỉ: <p>{user?.address.text}</p>
                 </h4>
                 <span onClick={() => setEdit(true)}>Thay đổi</span>
               </div>
@@ -126,12 +132,17 @@ const AddressForm: React.FC<IProps> = ({ onHandleIndex }) => {
                 value={phoneNumber}
               />
             </div>
-            <SelectProvince setProvince={setProvince} />
+            <SelectProvince setProvince={setProvince} value={province} />
             <SelectDistrict
               provinceCode={province?.code}
               setDistrict={setDistrict}
+              value={district}
             />
-            <SelectWard districtCode={district?.code} setWard={setWard} />
+            <SelectWard
+              districtCode={district?.code}
+              setWard={setWard}
+              value={ward}
+            />
             <div className="address-item">
               <label htmlFor="name">Địa chỉ:</label>
               <input

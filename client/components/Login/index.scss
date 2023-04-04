@@ -21,6 +21,7 @@
     label {
       text-transform: capitalize;
       margin: 15px 0 10px 0;
+      font-weight: 500;
     }
     input {
       width: 100%;
@@ -46,5 +47,9 @@
     a {
       color: var(--main-color);
     }
+  }
+  .errorMsg {
+    color: var(--main-color);
+    padding-top: 8px;
   }
 }

@@ -4,7 +4,7 @@
     box-shadow: 1px 8px 8px #ccc;
 
     border-radius: 5px;
-    max-width: 500px;
+    max-width: 600px;
     margin: 0 auto;
     background-color: #fff;
   }
@@ -22,6 +22,7 @@
     label {
       text-transform: capitalize;
       margin: 15px 0 10px 0;
+      font-weight: 500;
     }
     input {
       width: 100%;
@@ -47,5 +48,9 @@
     a {
       color: var(--main-color);
     }
+  }
+  .errorMsg {
+    color: var(--main-color);
+    padding-top: 8px;
   }
 }

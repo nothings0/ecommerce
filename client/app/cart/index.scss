@@ -1,19 +1,31 @@
 .main-cart {
-  margin-top: var(--main-header-h);
   background-color: var(--main-bg);
-  min-height: 100vh;
   &__container {
     max-width: var(--max-width);
     margin: 0 auto;
     padding: 10px 0;
     display: flex;
     gap: 50px;
+    @include tablet {
+      max-width: unset;
+      padding: 16px;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
   }
   &__wrap {
     width: 75%;
+    @include tablet {
+      flex: 1 1 100%;
+      width: unset;
+    }
   }
   &__payment {
     width: 25%;
+    @include tablet {
+      flex: 1 1 100%;
+      width: unset;
+    }
     &-wrap {
       display: flex;
       flex-direction: column;
@@ -34,8 +46,16 @@
     background-color: #fff;
     border-radius: 5px;
     margin-bottom: 15px;
-    span {
+    & > span {
       flex: 1;
+      svg {
+        cursor: pointer;
+        &.disable {
+          opacity: 0.6;
+          pointer-events: none;
+          cursor: none;
+        }
+      }
     }
     input {
       margin-right: 10px;
@@ -57,7 +77,7 @@
   .quantity {
     span {
       padding: 5px;
-      border: 1px solid red;
+      border: 1px solid #ccc;
       cursor: pointer;
       user-select: none;
       &:nth-child(2) {

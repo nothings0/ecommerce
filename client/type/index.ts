@@ -2,6 +2,7 @@ export interface ICategory {
   id: number;
   attributes: {
     name: string;
+    slug: string;
     createdAt: string;
     updatedAt: string;
     publishedAt: string;
@@ -30,6 +31,32 @@ export interface ICategory {
     };
   };
 }
+export interface ISupplier {
+  id: number;
+  attributes: {
+    name: string;
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
+  };
+}
+export interface IUser {
+  id: number;
+  username: string;
+  email: string;
+  provider: string;
+  confirmed: boolean;
+  blocked: boolean;
+  createdAt: string;
+  updatedAt: string;
+  name: string;
+  phone_number: number;
+  address: {
+    text: string;
+    code: string;
+  };
+  postal_code: string;
+}
 interface IMeta {
   pagination: {
     page: number;
@@ -40,6 +67,10 @@ interface IMeta {
 }
 export interface IResCategory {
   data: ICategory[];
+  meta: IMeta;
+}
+export interface IResSupplier {
+  data: ISupplier[];
   meta: IMeta;
 }
 export interface IResProduct {
@@ -289,4 +320,32 @@ export type TProvince = {
     name_with_type: string;
     code: string;
   };
+};
+export type ILineChart = {
+  labels: string[];
+  datasets: {
+    fill: boolean;
+    borderColor: string;
+    borderWidth: number;
+    borderDash: never[];
+    borderDashOffset: number;
+    pointBackgroundColor: string;
+    pointBorderColor: string;
+    pointHoverBackgroundColor: string;
+    pointBorderWidth: number;
+    pointHoverRadius: number;
+    pointHoverBorderWidth: number;
+    pointRadius: number;
+    data: number[];
+    tension: number;
+  }[];
+};
+export type IDoughnutChart = {
+  labels: string[];
+  datasets: {
+    backgroundColor: string[];
+    borderColor: string[];
+    borderWidth: number;
+    data: number[];
+  }[];
 };

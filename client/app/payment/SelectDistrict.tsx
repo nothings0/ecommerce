@@ -5,9 +5,14 @@ import useFetchAddress from "../Hooks/useFetchAddress";
 interface IProps {
   setDistrict: (obj: { text: string; code: string }) => void;
   provinceCode: string | undefined;
+  value: { text: string; code: string };
 }
 
-const SelectDistrict: React.FC<IProps> = ({ setDistrict, provinceCode }) => {
+const SelectDistrict: React.FC<IProps> = ({
+  setDistrict,
+  provinceCode,
+  value,
+}) => {
   const { data } = useFetchAddress<TProvince>(
     `/data/quan-huyen/${provinceCode}.json`
   );
@@ -27,7 +32,9 @@ const SelectDistrict: React.FC<IProps> = ({ setDistrict, provinceCode }) => {
           })
         }
       >
-        <option value="">Chọn quận huyện</option>
+        <option value={value.code ? value.code : ""}>
+          {value.text ? value.text : "Chọn quận huyện"}
+        </option>
         {data &&
           Object.values(data).map((item) => (
             <option value={item.code} key={item.code}>

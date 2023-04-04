@@ -4,7 +4,7 @@ import LoginModal from "../../components/Login";
 
 const Login = () => {
   return (
-    <div className="login">
+    <div className="login main">
       <div className="container">
         <LoginModal />
       </div>

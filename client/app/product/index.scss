@@ -1,9 +1,10 @@
 .store {
   position: relative;
-  min-height: 100vh;
   &__main {
     padding-left: var(--filter-width);
-    min-height: 100vh;
     background-color: var(--main-bg);
+    @include tablet {
+      padding-left: 30px;
+    }
   }
 }

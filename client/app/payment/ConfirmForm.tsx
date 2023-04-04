@@ -25,7 +25,7 @@ const ConfirmForm: React.FC<IProps> = ({ onHandleIndex }) => {
       products: order,
     };
     try {
-      const res = await axiosClient.post("/orders", data, {
+      await axiosClient.post("/orders", data, {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },
@@ -45,7 +45,7 @@ const ConfirmForm: React.FC<IProps> = ({ onHandleIndex }) => {
     <div className="form-confirm">
       <div className="form-container">
         <div className="confirm-item">
-          Xác nhận giao hàng ở địa chỉ: <span>{user?.address}</span>
+          Xác nhận giao hàng ở địa chỉ: <span>{user?.address.text}</span>
         </div>
         <div className="confirm-item">
           Vui lòng kiểm tra thông tin nhận hàng, đọc kỹ chính sách mua, đổi trả
@@ -63,7 +63,7 @@ const ConfirmForm: React.FC<IProps> = ({ onHandleIndex }) => {
       <Modal
         isOpen={isOpen}
         title="Thanh toán"
-        onOpen={() => setOpen(!isOpen)}
+        onOpen={setOpen}
         onOk={handleOk}
       >
         <p>Đặt hàng thành công!</p>

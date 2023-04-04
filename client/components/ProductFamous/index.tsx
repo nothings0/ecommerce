@@ -2,14 +2,14 @@ import React from "react";
 import { IResProductFamous } from "@/type";
 import ProductFamousItem from "./ProductFamousItem";
 import "./index.scss";
+import axiosClient from "@/config/axiosConfig";
 const getProduct = async () => {
-  const res = await fetch(`${process.env.API_URL}/product-hots?populate=*`);
-  const category: IResProductFamous = await res.json();
-  return category;
+  const res = await axiosClient.get("/product-hots?populate=*");
+  return res.data;
 };
 
 const ProductFamous = async () => {
-  const { data } = await getProduct();
+  const { data }: IResProductFamous = await getProduct();
   return (
     <div className="product__famous">
       <div className="product__famous__container">

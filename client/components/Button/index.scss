@@ -21,11 +21,21 @@
     color: #fff;
   }
   &.ok {
-    background: linear-gradient(to bottom, #14cb00, #009f00);
+    background: #0dd995;
     color: #fff;
   }
   &.cancel {
-    background: linear-gradient(to bottom, #929292, #696969);
-    color: #fff;
+    background: #dbdcdf;
+    color: #262626;
+  }
+  &.outline {
+    color: #0dd995;
+    border: 1px solid#0dd995;
+    background: transparent;
+  }
+  &.outlineactive {
+    color: var(--main-color);
+    border: 1px solid var(--main-color);
+    background: transparent;
   }
 }

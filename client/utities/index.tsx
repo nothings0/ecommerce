@@ -27,6 +27,7 @@ export function checkAndModifyArrayOrder(arr: IOder[], obj: IOder): void {
 }
 export function checkAndModifyArray(arr: IProduct[], obj: IProduct): void {
   const index = arr.findIndex((e) => e.id === obj.id);
+
   if (index === -1) {
     // Add the object to the array
     arr.push(obj);

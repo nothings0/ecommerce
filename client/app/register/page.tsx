@@ -4,7 +4,7 @@ import RegisterModal from "../../components/Register";
 
 const Register = () => {
   return (
-    <div className="register">
+    <div className="register main">
       <div className="container">
         <RegisterModal />
       </div>

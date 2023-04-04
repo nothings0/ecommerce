@@ -12,14 +12,14 @@ const Account = () => {
     <>
       {user ? (
         <Link href="/user">
-          <div className="account">
+          <div className="account-btn">
             <AiOutlineUser size={25} />
             <span>Tài khoản</span>
           </div>
         </Link>
       ) : (
         <Link href="/login">
-          <div className="account">
+          <div className="account-btn">
             <AiOutlineUser size={25} />
             <span>Đăng nhập</span>
           </div>

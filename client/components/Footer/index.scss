@@ -1,27 +1,74 @@
 .footer {
   background-color: #1e2f3a;
   color: #fff;
-  padding: 50px 0 10px 0;
+  padding: 40px 0 10px 0;
   &__container {
     max-width: 1170px;
     margin: 0 auto;
+    @include tablet {
+      padding: 0 15px;
+    }
     hr {
       margin: 40px 0px;
       height: 0;
       border: 1px solid #d2d2d2;
     }
+    @include tablet {
+      max-width: unset;
+      padding: 0 16px;
+    }
   }
   &__top {
     display: flex;
-    // align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0 10%;
+    @include tablet {
+      gap: 20px 0;
+    }
+  }
+  &__text {
+    flex: 1 1 60%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    @include mobile {
+      flex: 1 1 100%;
+    }
+  }
+  &__contact {
+    flex: 1 1 30%;
+    @include mobile {
+      flex: 1 1 100%;
+    }
+    .input {
+      position: relative;
+      margin-top: 1.5rem;
+      input {
+        width: 100%;
+        padding: 10px 85px 10px 8px;
+        border-radius: 4px;
+        font-size: 18px;
+      }
+      .button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+      }
+    }
   }
   &__item {
     display: flex;
     flex-direction: column;
-    gap: 12px 0;
+    gap: 12px;
     text-transform: capitalize;
-    h2 {
+    flex: 1 1 20%;
+    @include mobile {
+      flex-basis: 50%;
+    }
+    h4 {
       font-size: 16px;
       margin-bottom: 6px;
     }

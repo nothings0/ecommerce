@@ -16,7 +16,7 @@ interface IProps {
 const FilterItem: React.FC<IProps> = ({ path, title }) => {
   const dispatch = useDispatch();
   const { data: res } = useFetch<IResCategory>(`${path}`);
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState(true);
   const { supplier, category } = useSelector(
     (state: RootState) => state.product
   );
@@ -54,10 +54,10 @@ const FilterItem: React.FC<IProps> = ({ path, title }) => {
               name=""
               checked={
                 supplier === item.attributes.name ||
-                category === item.attributes.name
+                category === item.attributes.slug
               }
               id="checkbox"
-              value={item.attributes.name}
+              value={item.attributes.slug}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 handleSetSearch(e.target.value)
               }

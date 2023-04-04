@@ -5,6 +5,8 @@ import { BsTrash } from "react-icons/bs";
 import Link from "next/link";
 import { fomatCurrency } from "@/utities";
 import Modal from "@/components/Modal";
+import { useDispatch } from "react-redux";
+import { removeCart } from "@/redux/productSlice";
 
 interface IProps {
   data: IOrder;
@@ -18,11 +20,19 @@ const CartItem: React.FC<IProps> = ({ onChange, data, onHandleQuantity }) => {
   const [currentQuantity, setCurrentQuantity] = useState<number>(quantity!);
   const [isOpen, setOpen] = useState<boolean>(false);
 
+  const dispatch = useDispatch();
+
   const handleQuantity = (qnt: number) => {
     if (qnt === 0 || isNaN(qnt)) return;
     setCurrentQuantity(qnt);
     onHandleQuantity(qnt, product!.id);
   };
+
+  const handleRemove = () => {
+    dispatch(removeCart([product]));
+    setOpen(!isOpen);
+  };
+
   return (
     <div className="cart-item">
       {product && (
@@ -65,7 +75,7 @@ const CartItem: React.FC<IProps> = ({ onChange, data, onHandleQuantity }) => {
                 type="tel"
                 value={currentQuantity.toString()}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  handleQuantity(parseFloat(e.currentTarget.value))
+                  handleQuantity(Number(e.target.value))
                 }
               />
             </span>
@@ -82,23 +92,18 @@ const CartItem: React.FC<IProps> = ({ onChange, data, onHandleQuantity }) => {
               cursor: "pointer",
             }}
           >
-            <BsTrash size={20} onClick={() => setOpen(!isOpen)} />
+            <BsTrash size={20} onClick={() => setOpen(true)} />
           </span>
         </>
       )}
       <Modal
-        title="a"
+        title="Xóa khỏi giỏ hàng"
         isOpen={isOpen}
-        onOk={() => setOpen(!isOpen)}
-        onCancel={() => setOpen(!isOpen)}
-        onOpen={() => setOpen(!isOpen)}
+        onOk={handleRemove}
+        onCancel={setOpen}
+        onOpen={setOpen}
       >
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro itaque
-          explicabo blanditiis reiciendis pariatur id, saepe beatae provident
-          nihil dignissimos, quas tenetur architecto obcaecati facilis
-          voluptatem similique inventore consequuntur quae?
-        </p>
+        <p>Bạn có muốn xóa sản phẩm khỏi giỏ hàng ?</p>
       </Modal>
     </div>
   );

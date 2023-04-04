@@ -1,0 +1,48 @@
+.side-bar {
+  padding: 20px;
+  width: var(--filter-width);
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: var(--filter-bg);
+  z-index: 99;
+  &--item {
+    display: flex;
+    align-items: center;
+    gap: 0 1rem;
+    text-transform: capitalize;
+    margin-bottom: 0.5rem;
+    padding: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    &.active {
+      background-color: var(--main-bg);
+      font-weight: 500;
+    }
+  }
+  @include tablet {
+    padding: 20px 40px 20px 8px;
+    top: 0;
+    transform: translateX(calc(30px - var(--filter-width)));
+    transition: transform 0.15s linear;
+    &:hover {
+      transform: translateX(0);
+    }
+  }
+  &::after {
+    display: none;
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    bottom: 0;
+    background-color: #e3e3e3;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    @include tablet {
+      display: block;
+    }
+  }
+}

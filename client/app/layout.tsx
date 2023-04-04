@@ -1,9 +1,9 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import "./globals.css";
 import ThemeProvider from "@/components/Provider";
 import { Suspense } from "react";
 import Loading from "./loading";
+import "./globals.scss";
 
 export default function RootLayout({
   children,

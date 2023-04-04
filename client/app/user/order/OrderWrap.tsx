@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import useFetch from "@/app/Hooks/useFetch";
 import { IResOrderServer } from "@/type";
 import qs from "querystring";
 import OrderItem from "./OrderItem";
@@ -33,10 +32,11 @@ const OrderWrap: React.FC<IProps> = ({ type }) => {
               {res?.data.map((item) => (
                 <>
                   {item.attributes.order_details?.data.map((e) => (
-                    <Link href={`/user/order/${item.id}`}>
+                    <Link href={`/user/order/${item.id}`} key={e.id}>
                       <OrderItem
                         data={e.attributes.product.data}
                         type={item.attributes.status.data.attributes.name}
+                        quantity={e.attributes.quantity}
                       />
                     </Link>
                   ))}

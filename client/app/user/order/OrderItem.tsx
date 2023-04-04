@@ -6,9 +6,10 @@ import { fomatCurrency } from "@/utities";
 interface IProps {
   data: IProduct;
   type: string;
+  quantity: number;
 }
 const URL = "http://127.0.0.1:1337";
-const OrderItem: React.FC<IProps> = ({ data, type }) => {
+const OrderItem: React.FC<IProps> = ({ data, type, quantity }) => {
   return (
     <div className="order-item">
       <div className="order-item--left">
@@ -30,7 +31,8 @@ const OrderItem: React.FC<IProps> = ({ data, type }) => {
         </div>
       </div>
       <div className="order-item--right">
-        {fomatCurrency(data.attributes.price)}
+        <span>Số lượng: {quantity}</span>
+        <span>{fomatCurrency(data.attributes.price * quantity)}</span>
       </div>
     </div>
   );

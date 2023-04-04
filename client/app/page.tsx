@@ -6,17 +6,23 @@ import Service from "@/components/Service";
 
 export default function Home() {
   return (
-    <main style={{ marginTop: "var(--main-header-h)", minHeight: "100vh" }}>
+    <main className="main" style={{ background: "var(--main-bg)" }}>
       <Banner />
       <Service />
       {/* @ts-ignore */}
       <Category />
       {/* @ts-ignore */}
-      <ProductContainer type="featured collection" path="products?populate=*" />
+      <ProductContainer
+        type="featured collection"
+        path="products?populate=*&pagination[page]=1&pagination[pageSize]=6"
+      />
       {/* @ts-ignore */}
       <ProductFamous />
       {/* @ts-ignore */}
-      <ProductContainer type="suggest collection" path="products?populate=*" />
+      <ProductContainer
+        type="suggest collection"
+        path="products?populate=*&pagination[page]=1&pagination[pageSize]=6"
+      />
     </main>
   );
 }

@@ -18,7 +18,7 @@ const Payment = () => {
   };
 
   return (
-    <div className="payment">
+    <div className="payment main">
       <div className="container">
         <MultiForm
           index={index}

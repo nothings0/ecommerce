@@ -9,7 +9,10 @@ interface ITypeInitState {
     updatedAt: string;
     email: string;
     phone_number: string;
-    address: string;
+    address: {
+      text: string;
+      code: string;
+    };
     name: string;
     id: number;
     provider: "local" | "public";

@@ -47,6 +47,9 @@
       gap: 0 1.5rem;
     }
     &--right {
+      display: flex;
+      align-items: center;
+      gap: 0 30px;
     }
     &--img {
       padding: 5px;
@@ -64,17 +67,23 @@
       &-type {
         font-size: 1rem;
         font-weight: 400;
+        padding: 5px;
+        border-radius: 2px;
         &.pending {
-          color: #f7cb73;
+          color: #00b3db;
+          background-color: #00b3db1a;
         }
         &.success {
-          color: #4bb543;
+          color: #27da1a;
+          background-color: #27da1a1a;
         }
         &.shipping {
-          color: #5bc0de;
+          color: #1300de;
+          background-color: #1300de1a;
         }
         &.faild {
           color: #bb2124;
+          background-color: #bb21241a;
         }
       }
     }

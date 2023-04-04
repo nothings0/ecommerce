@@ -1,0 +1,39 @@
+.pagination {
+  padding-bottom: 2rem;
+  &-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    & > li {
+      list-style: none;
+      & > a {
+        display: block;
+        min-width: 40px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        margin: 0 0.5rem;
+        border-radius: 2px;
+        &.active {
+          background-color: var(--main-color);
+          color: #fff;
+        }
+        &.disable {
+          cursor: none;
+          pointer-events: none;
+          user-select: none;
+        }
+      }
+    }
+    & > svg {
+      min-width: 40px;
+      height: 30px;
+      cursor: pointer;
+      &.disable {
+        opacity: 0.5;
+        cursor: none;
+        pointer-events: none;
+      }
+    }
+  }
+}

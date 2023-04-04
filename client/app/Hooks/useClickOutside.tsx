@@ -9,8 +9,6 @@ function useClickOutside(
 ) {
   useEffect(() => {
     function handleClickOutside(event: Event) {
-      console.log("a");
-
       if (ref.current && !ref.current.contains(event.target as HTMLElement)) {
         setActive(false);
       }

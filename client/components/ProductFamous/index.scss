@@ -1,17 +1,22 @@
 .product__famous {
-  background-color: var(--main-bg);
   padding-bottom: 50px;
   &__container {
     max-width: var(--max-width);
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    gap: 0 10px;
+    gap: 10px;
+    @include tablet {
+      max-width: unset;
+      padding: 0 16px;
+    }
+    @include mobile {
+      flex-wrap: wrap;
+    }
   }
   &__item {
     position: relative;
-    flex: 1;
-    width: calc((100% / 4) - 10px);
+    flex: 1 1 25%;
     img {
       border-radius: 8px;
       width: 100%;
@@ -20,6 +25,10 @@
     &:nth-child(1) {
       color: #fff;
     }
+    @include mobile {
+      font-size: 13px;
+      flex-basis: 40%;
+    }
   }
   &__text {
     position: absolute;
@@ -27,16 +36,22 @@
     left: 15px;
     text-transform: capitalize;
     span {
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 400;
     }
-    h3 {
+    h4 {
       font-size: 16px;
       font-weight: 600;
+      @include mobile {
+        font-size: 13px;
+      }
     }
     p {
       font-size: 13px;
       font-weight: 400;
+      @include tablet {
+        display: none;
+      }
     }
   }
 }

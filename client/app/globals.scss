@@ -8,6 +8,7 @@
   --filter-width: 260px;
   --header-h: 56px;
   --main-header-h: 145px;
+  --main-header-h-mb: 72px;
   --max-width: 1170px;
   --primary-color: #3b3733;
   --main-color: #ff6d19;
@@ -89,7 +90,13 @@
   padding: 0;
   margin: 0;
 }
-
+.main {
+  margin-top: var(--main-header-h);
+  min-height: 100vh;
+  @include tablet {
+    margin-top: var(--main-header-h-mb) !important;
+  }
+}
 html,
 body {
   max-width: 100vw;

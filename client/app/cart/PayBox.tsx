@@ -35,7 +35,7 @@ const PayBox = () => {
               </Button>
             </Link>
           ) : (
-            <Link href="/store">
+            <Link href="/product">
               <Button type="primary" size="md">
                 Mua sắm
               </Button>

@@ -8,32 +8,50 @@ import { useDispatch } from "react-redux";
 import { handleLogin } from "@/redux/userSlice";
 import Cookies from "js-cookie";
 import axiosClient from "@/config/axiosConfig";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const Login: React.FC = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const handleSubmit = async () => {
-    const data = {
-      password,
-      identifier: username,
-    };
-    try {
-      const res = await axiosClient.post("/auth/local", data);
-      dispatch(handleLogin(res.data));
-      Cookies.set("token", res.data.jwt, {
-        expires: 7,
-        sameSite: "strict",
-        secure: true,
-      });
-      router.push("/");
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const [error, setError] = useState<string>("");
+  const { handleSubmit, handleBlur, handleChange, touched, errors, values } =
+    useFormik({
+      initialValues: {
+        username: "",
+        password: "",
+      },
+      validationSchema: Yup.object({
+        username: Yup.string()
+          .required("Required")
+          .min(6, "Must be 6 characters or more"),
+        password: Yup.string()
+          .required("Required")
+          .matches(
+            /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/,
+            "Password must be more than 8 characters, contain at least 1 number"
+          ),
+      }),
+      onSubmit: async (values) => {
+        const data = {
+          password: values.password,
+          identifier: values.username,
+        };
+        try {
+          const res = await axiosClient.post("/auth/local", data);
+          dispatch(handleLogin(res.data));
+          Cookies.set("token", res.data.jwt, {
+            expires: 7,
+            sameSite: "strict",
+            secure: true,
+          });
+          router.push("/");
+        } catch (error: any) {
+          setError(error.response.data.error.message);
+        }
+      },
+    });
 
   return (
     <div className="login-modal">
@@ -45,9 +63,13 @@ const Login: React.FC = () => {
             type="text"
             id="username"
             placeholder="nhập username..."
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={values.username}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
+          {errors.username && touched.username && (
+            <p className="errorMsg"> {errors.username} </p>
+          )}
         </div>
         <div className="login-item">
           <label htmlFor="password">password</label>
@@ -55,10 +77,15 @@ const Login: React.FC = () => {
             type="password"
             id="password"
             placeholder="nhập password..."
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={values.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
+          {errors.password && touched.password && (
+            <p className="errorMsg"> {errors.password} </p>
+          )}
         </div>
+        {error && <p className="errorMsg">{error}</p>}
       </form>
       <div className="login-button">
         <Button type="primary" size="md" OnClick={handleSubmit}>

@@ -3,6 +3,9 @@
   color: #fff;
   width: 100%;
   border-bottom: 1px solid #8c8c8c;
+  @include tablet {
+    display: none;
+  }
   &__container {
     height: var(--header-h);
     display: flex;
@@ -42,15 +45,17 @@
       display: none;
       position: absolute;
       left: 0;
-      top: 40px;
+      top: 41px;
       right: 0;
-      background-color: var(--gray);
+      background-color: var(--main-bg);
       flex-direction: column;
       padding: 8px;
       text-transform: capitalize;
       animation: fade 0.15s linear;
       border-bottom-left-radius: 8px;
+      color: #000;
       border-bottom-right-radius: 8px;
+      box-shadow: 0px 4px 8px 0px #ccc;
       &--item {
         margin-top: 8px;
       }

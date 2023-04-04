@@ -5,13 +5,15 @@ import ProductCard from "../ProductCard";
 import "./index.scss";
 import { AiOutlineDoubleRight } from "react-icons/ai";
 import useFetch from "@/app/Hooks/useFetch";
+import Pagination from "../Pagination";
 
 interface IProps {
   type: string;
   path: string;
+  page?: number;
 }
 // @ts-ignore
-const ProductContainer: React.FC<IProps> = ({ type, path }) => {
+const ProductContainer: React.FC<IProps> = ({ type, path, page }) => {
   const { data: res } = useFetch<IResProduct>(`${path}`);
   const products = res?.data;
 
@@ -28,11 +30,22 @@ const ProductContainer: React.FC<IProps> = ({ type, path }) => {
           )}
         </div>
         <div className="product__wrap">
-          {products?.map((item) => (
-            <ProductCard product={item} key={item.id} />
-          ))}
+          {products && products.length > 0 ? (
+            products?.map((item) => (
+              <ProductCard product={item} key={item.id} />
+            ))
+          ) : (
+            <p>Không có dữ liệu</p>
+          )}
         </div>
       </div>
+      {page && (
+        <Pagination
+          page={page}
+          total={res?.meta.pagination.pageCount!}
+          pathname="/product"
+        />
+      )}
     </div>
   );
 };

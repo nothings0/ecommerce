@@ -18,8 +18,12 @@
     }
   }
   &-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 520px;
     max-width: calc(100vw - 32px);
+    min-height: 180px;
     background-color: #fff;
     padding: 10px 20px;
     border-radius: 10px;
@@ -32,8 +36,22 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 18px;
-    svg {
-      cursor: pointer;
+    h3 {
+      font-weight: 500;
+    }
+    .icon {
+      padding: 5px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &:hover {
+        background-color: #dc2626;
+        color: #fff;
+      }
+      svg {
+        cursor: pointer;
+      }
     }
   }
   &-footer {

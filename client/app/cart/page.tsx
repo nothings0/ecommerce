@@ -8,6 +8,8 @@ import "./index.scss";
 import { IOrder, IProduct } from "@/type";
 import { setNewOrder } from "@/redux/orderSlice";
 import { BsTrash } from "react-icons/bs";
+import { removeProduct } from "@/redux/productSlice";
+import Modal from "@/components/Modal";
 
 interface INewOrder {
   product: IProduct | null;
@@ -19,6 +21,7 @@ const MainCart = () => {
 
   const [isCheckedAll, setIsCheckedAll] = useState<boolean>(false);
   const [order, setOrder] = useState<IOrder[]>([]);
+  const [isOpen, setOpen] = useState<boolean>(false);
 
   const { cart } = useSelector((state: RootState) => state.product);
 
@@ -30,7 +33,7 @@ const MainCart = () => {
       isChecked: false,
     }));
     setOrder(orderBefore);
-  }, []);
+  }, [cart]);
 
   const handleCheckAll = (event: React.FormEvent<HTMLInputElement>) => {
     const checked = event.currentTarget.checked;
@@ -103,8 +106,32 @@ const MainCart = () => {
     dispatch(setNewOrder(newOrder));
   };
 
+  const productsArr = () => {
+    const products: IOrder[] = [];
+    order.forEach((item) => {
+      if (item.isChecked) products.push(item);
+    });
+    return products;
+  };
+
+  const handleRemoveAll = () => {
+    const products = productsArr();
+    if (products.length <= 0) return;
+
+    dispatch(removeProduct(products));
+    setOpen(!isOpen);
+  };
+  const handleOpen = () => {
+    const products: IOrder[] = [];
+    order.forEach((item) => {
+      if (item.isChecked) products.push(item);
+    });
+    if (products.length <= 0) return;
+    setOpen(true);
+  };
+
   return (
-    <main className="main-cart">
+    <main className="main-cart main">
       <div className="main-cart__container">
         <div className="main-cart__wrap">
           <div className="main-cart__header">
@@ -125,10 +152,13 @@ const MainCart = () => {
               style={{
                 display: "flex",
                 justifyContent: "flex-end",
-                cursor: "pointer",
               }}
             >
-              <BsTrash size={20} />
+              <BsTrash
+                size={20}
+                onClick={handleOpen}
+                className={productsArr().length <= 0 ? "disable" : ""}
+              />
             </span>
           </div>
           <div className="main-cart__table">
@@ -150,6 +180,15 @@ const MainCart = () => {
         </div>
         <PayBox />
       </div>
+      <Modal
+        title="Xóa khỏi giỏ hàng"
+        isOpen={isOpen}
+        onOk={handleRemoveAll}
+        onCancel={setOpen}
+        onOpen={setOpen}
+      >
+        <p>Bạn có muốn xóa sản phẩm khỏi giỏ hàng ?</p>
+      </Modal>
     </main>
   );
 };

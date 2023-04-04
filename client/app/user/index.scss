@@ -1,36 +1,79 @@
 .user {
   position: relative;
-  min-height: 100vh;
-  margin-top: var(--main-header-h);
-  .side-bar {
-    padding: 20px;
-    width: var(--filter-width);
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    background-color: var(--filter-bg);
-    &--item {
-      display: flex;
-      align-items: center;
-      gap: 0 1rem;
-      text-transform: capitalize;
-      margin-bottom: 0.5rem;
-      padding: 5px;
-      border-radius: 8px;
-      cursor: pointer;
-      &.active {
-        background-color: var(--main-bg);
-        font-weight: 500;
-      }
-    }
-  }
   &-main {
     padding-left: var(--filter-width);
-    min-height: 100vh;
     background-color: var(--main-bg);
+    @include tablet {
+      padding-left: 15px;
+    }
     .container {
       padding: 20px;
+      min-height: 100vh;
+    }
+  }
+  .account {
+    display: flex;
+    .wrap {
+      margin: 0 auto;
+    }
+    &__top {
+      display: flex;
+      align-items: center;
+      gap: 0 20px;
+      &-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--main-color);
+        position: absolute;
+        bottom: 15px;
+        right: 10px;
+        padding: 5px;
+        color: #fff;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+      &-img {
+        position: relative;
+        img {
+          width: 8rem;
+          height: auto;
+        }
+      }
+      &-text {
+      }
+    }
+    &__bottom {
+      margin: 2.4rem 0;
+      &-box {
+        display: flex;
+        align-items: center;
+        gap: 0 20px;
+        &--input {
+          width: 100%;
+          margin-bottom: 1.4rem;
+          label {
+            font-weight: 400;
+            opacity: 0.9;
+          }
+          input {
+            margin-top: 6px;
+            width: 100%;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 16px;
+            border: 1px solid transparent;
+            &:focus {
+              border: 1px solid #ccc;
+            }
+          }
+        }
+      }
+    }
+    &__btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 }

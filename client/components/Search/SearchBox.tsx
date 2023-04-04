@@ -32,7 +32,7 @@ const SearchBox = () => {
       <div className="search__box__input">
         <input
           type="text"
-          placeholder="search for product..."
+          placeholder="Tìm kiếm sản phẩm ..."
           value={value}
           onChange={handleChangeInput}
           onFocus={handleFocus}
