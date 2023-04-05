@@ -69,14 +69,18 @@
     "phone_number": {
       "type": "string"
     },
-    "address": {
-      "type": "string"
-    },
     "orders": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::order.order",
       "mappedBy": "users"
+    },
+    "postal_code": {
+      "type": "string",
+      "default": "1000"
+    },
+    "address": {
+      "type": "json"
     }
   }
 }
