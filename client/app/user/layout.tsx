@@ -6,6 +6,7 @@ import {
   AiOutlineShoppingCart,
   AiOutlineHeart,
 } from "react-icons/ai";
+import { Metadata } from "next";
 const SideBarData = [
   {
     path: "/user",
@@ -23,6 +24,10 @@ const SideBarData = [
     icon: <AiOutlineHeart />,
   },
 ];
+
+export const metadata: Metadata = {
+  title: "Trang người dùng",
+};
 
 export default function UserLayout({
   children,

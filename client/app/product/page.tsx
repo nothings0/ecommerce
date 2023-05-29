@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Filter from "@/components/Filter";
 import ProductContainer from "@/components/ProductContainer";
 import { RootState } from "@/redux/store";
@@ -9,7 +9,7 @@ import "./index.scss";
 
 const MainStore = () => {
   const params = useSearchParams();
-  const _page = Number(params.get("page"));
+  const _page = Number(params?.get("page"));
 
   const { supplier, category } = useSelector(
     (state: RootState) => state.product

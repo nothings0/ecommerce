@@ -126,6 +126,7 @@ export interface IProduct {
   attributes: {
     name: string;
     description: string;
+    html?: string;
     createdAt: string;
     updatedAt: string;
     publishedAt: string;

@@ -1,7 +1,6 @@
 import React from "react";
 import "./index.scss";
 import FilterItem from "./FilterItem";
-import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
 
 const Filter = () => {
   return (

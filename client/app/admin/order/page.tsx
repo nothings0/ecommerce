@@ -13,9 +13,11 @@ const Order = () => {
   const { jwt } = useSelector((state: RootState) => state.user);
   const query = qs.stringify({
     populate: ["order_details.product.picture_cover", "status"],
+    "filters[status][name][$eq]": "pending",
   });
+
   const { data: res } = useFetchWithPermision<IResOrderServer>(
-    `/orders?${query}&filters[status][name][$eq]=pending`,
+    `/orders?${query}`,
     jwt
   );
   return (
@@ -26,19 +28,17 @@ const Order = () => {
           <>
             {res?.data.length > 0 ? (
               <>
-                {res?.data.map((item) => (
-                  <>
-                    {item.attributes.order_details?.data.map((e) => (
-                      <Link href={`/admin/order/${item.id}`} key={e.id}>
-                        <OrderItem
-                          data={e.attributes.product.data}
-                          type={item.attributes.status.data.attributes.name}
-                          quantity={e.attributes.quantity}
-                        />
-                      </Link>
-                    ))}
-                  </>
-                ))}
+                {res?.data.map((item) =>
+                  item.attributes.order_details?.data.map((e) => (
+                    <Link href={`/admin/order/${item.id}`} key={e.id}>
+                      <OrderItem
+                        data={e.attributes.product.data}
+                        type={item.attributes.status.data.attributes.name}
+                        quantity={e.attributes.quantity}
+                      />
+                    </Link>
+                  ))
+                )}
               </>
             ) : (
               <>

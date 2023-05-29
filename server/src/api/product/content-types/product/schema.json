@@ -44,6 +44,9 @@
     },
     "quantity": {
       "type": "integer"
+    },
+    "html": {
+      "type": "richtext"
     }
   }
 }

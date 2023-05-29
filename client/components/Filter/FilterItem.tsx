@@ -47,24 +47,26 @@ const FilterItem: React.FC<IProps> = ({ path, title }) => {
         )}
       </div>
       <div className={`filter__list ${active ? "active" : ""}`}>
-        {res?.data.map((item, index) => (
-          <div className="filter__list__item" key={index}>
-            <input
-              type="checkbox"
-              name=""
-              checked={
-                supplier === item.attributes.name ||
-                category === item.attributes.slug
-              }
-              id="checkbox"
-              value={item.attributes.slug}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                handleSetSearch(e.target.value)
-              }
-            />
-            <label htmlFor="checkbox">{item.attributes.name}</label>
-          </div>
-        ))}
+        {res?.data.map((item, index) => {
+          return (
+            <div className="filter__list__item" key={index}>
+              <input
+                type="checkbox"
+                name=""
+                checked={
+                  supplier === item.attributes.name ||
+                  category === item.attributes.slug
+                }
+                id="checkbox"
+                value={item.attributes.slug || item.attributes.name}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  handleSetSearch(e.target.value)
+                }
+              />
+              <label htmlFor="checkbox">{item.attributes.name}</label>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

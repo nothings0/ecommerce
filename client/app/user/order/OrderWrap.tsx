@@ -29,19 +29,17 @@ const OrderWrap: React.FC<IProps> = ({ type }) => {
         <>
           {res?.data.length > 0 ? (
             <>
-              {res?.data.map((item) => (
-                <>
-                  {item.attributes.order_details?.data.map((e) => (
-                    <Link href={`/user/order/${item.id}`} key={e.id}>
-                      <OrderItem
-                        data={e.attributes.product.data}
-                        type={item.attributes.status.data.attributes.name}
-                        quantity={e.attributes.quantity}
-                      />
-                    </Link>
-                  ))}
-                </>
-              ))}
+              {res?.data.map((item) =>
+                item.attributes.order_details?.data.map((e) => (
+                  <Link href={`/user/order/${item.id}`} key={e.id}>
+                    <OrderItem
+                      data={e.attributes.product.data}
+                      type={item.attributes.status.data.attributes.name}
+                      quantity={e.attributes.quantity}
+                    />
+                  </Link>
+                ))
+              )}
             </>
           ) : (
             <>

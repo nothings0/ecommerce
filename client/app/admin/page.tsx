@@ -1,10 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-// import { RootState } from "@/redux/store";
-// import { IResOrderServer } from "@/type";
-// import { useSelector } from "react-redux";
-// import useFetchWithPermision from "../Hooks/useFetchWithPermision";
-// import qs from "querystring";
 
 import order_1 from "@/assets/order-1.png";
 import order_2 from "@/assets/order-2.png";
@@ -14,12 +9,10 @@ import Image, { StaticImageData } from "next/image";
 import LineChart from "@/components/Chart/LineChart";
 import {
   sampleLineChartData,
-  // sampleDoughnutChartData,
   sampleLineChartDataOrder,
 } from "@/components/Chart/chart.config";
-// import DoughnutChart from "@/components/Chart/DoughnutChart";
 import Table from "@/components/Table";
-import { IDoughnutChart, ILineChart } from "@/type";
+import { ILineChart } from "@/type";
 
 type InitType = {
   title: string;
@@ -27,18 +20,9 @@ type InitType = {
   img: StaticImageData;
 };
 const page = () => {
-  // const { jwt } = useSelector((state: RootState) => state.user);
-  // const query = qs.stringify({
-  //   populate: ["order_details.product.picture_cover", "status"],
-  // });
-  // const { data: res } = useFetchWithPermision<IResOrderServer>(
-  //   `/orders?${query}`,
-  //   jwt
-  // );
   const [initData, setInitData] = useState<InitType[]>([]);
   const [lineChartData, setLineChartData] = useState<ILineChart>();
   const [lineChartDataOrder, setLineChartDataOrder] = useState<ILineChart>();
-  // const [doughnutChartData, setDoughnutChartData] = useState<IDoughnutChart>();
 
   useEffect(() => {
     const init: InitType[] = [
@@ -68,8 +52,6 @@ const page = () => {
     setLineChartData(lineData);
     const lineDataOrder = sampleLineChartDataOrder(7);
     setLineChartDataOrder(lineDataOrder);
-    // const doughnutData = sampleDoughnutChartData();
-    // setDoughnutChartData(doughnutData);
   }, []);
 
   return (

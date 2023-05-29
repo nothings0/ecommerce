@@ -9,6 +9,9 @@ import { RootState } from "@/redux/store";
 import { useRouter } from "next/navigation";
 import { IResSupplier, IResCategory, IProduct } from "@/type";
 import useFetch from "@/app/Hooks/useFetch";
+import MarkdownIt from "markdown-it";
+import "react-markdown-editor-lite/lib/index.css";
+import dynamic from "next/dynamic";
 
 interface IProducts {
   name: string | undefined;
@@ -18,6 +21,7 @@ interface IProducts {
   supplier_id: number | undefined;
   category_id: number | undefined;
   picture_cover: string | undefined;
+  html: string | undefined;
 }
 
 interface IProps {
@@ -37,21 +41,32 @@ const Modify: React.FC<IProps> = ({ props }) => {
     price: props?.attributes.price,
     quantity: props?.attributes.quantity,
     supplier_id: props?.attributes.supplier_id.data.id,
+    html: props?.attributes.html,
   });
   const { data: categories } = useFetch<IResCategory>(`categories`);
   const { data: suppliers } = useFetch<IResSupplier>(`suppliers`);
-
+  const MdEditor = dynamic(() => import("react-markdown-editor-lite"), {
+    ssr: false,
+  });
   useEffect(() => {
     return () => {
       thumb && URL.revokeObjectURL(URL.createObjectURL(thumb));
     };
   }, [thumb]);
 
+  const mdParser = new MarkdownIt(/* Markdown-it options */);
+
   const handleChangeAva = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
 
     setThumb(e.target.files[0]);
   };
+
+  function handleEditorChange({ html, text }: any) {
+    console.log(html, text);
+
+    setProduct((product) => ({ ...product, html: html }));
+  }
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -110,16 +125,6 @@ const Modify: React.FC<IProps> = ({ props }) => {
               value={product.name}
             />
           </div>
-          <div className="modify-desc">
-            <label htmlFor="description">Chi tiết sản phẩm sản phẩm</label>
-            <textarea
-              id="description"
-              placeholder="Thêm chi tiết sản phẩm"
-              name="description"
-              onChange={handleChange}
-              value={product.description}
-            />
-          </div>
           <div className="modify-input">
             <div className="modify-input--box">
               <label htmlFor="price">Giá</label>
@@ -154,7 +159,9 @@ const Modify: React.FC<IProps> = ({ props }) => {
               >
                 <option value="">Chọn hãng sản xuất</option>
                 {suppliers?.data.map((item) => (
-                  <option value={item.id}>{item.attributes.name}</option>
+                  <option value={item.id} key={item.id}>
+                    {item.attributes.name}
+                  </option>
                 ))}
               </select>
             </div>
@@ -169,10 +176,21 @@ const Modify: React.FC<IProps> = ({ props }) => {
               >
                 <option value="">Chọn danh mục sản phẩm</option>
                 {categories?.data.map((item) => (
-                  <option value={item.id}>{item.attributes.name}</option>
+                  <option value={item.id} key={item.id}>
+                    {item.attributes.name}
+                  </option>
                 ))}
               </select>
             </div>
+          </div>
+          <div className="modify-desc">
+            <label htmlFor="description">Chi tiết sản phẩm sản phẩm</label>
+            <MdEditor
+              style={{ height: "500px" }}
+              renderHTML={(text) => mdParser.render(text)}
+              onChange={handleEditorChange}
+              // value={product.html}
+            />
           </div>
         </div>
         <div className="modify-img">

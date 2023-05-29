@@ -8,6 +8,9 @@
     margin-top: 2rem;
     display: flex;
     gap: 1rem;
+    @include tablet {
+      flex-direction: column-reverse;
+    }
   }
   &-text {
     flex: 1 1 70%;
@@ -36,7 +39,7 @@
     }
   }
   &-desc {
-    margin: 2rem 0;
+    margin-bottom: 2rem;
     border: 1px solid #ccc;
     background-color: #fff;
     padding: 8px 14px;
@@ -46,6 +49,17 @@
       max-height: 960px;
       border: none;
       outline: none;
+    }
+    .editor-container {
+      @include tablet {
+        flex-direction: column;
+      }
+      .sec-md {
+        @include tablet {
+          border-right: none;
+          border-bottom: 1px solid #e0e0e0;
+        }
+      }
     }
   }
   &-img {
@@ -83,6 +97,7 @@
     align-items: center;
     gap: 1rem 2rem;
     flex-wrap: wrap;
+    margin: 2rem 0;
     &--box {
       flex: 1 1 40%;
       input {
