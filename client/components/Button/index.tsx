@@ -10,6 +10,7 @@ interface IProps {
   type: string;
 }
 const Button: React.FC<IProps> = ({ Icon, OnClick, size, children, type }) => {
+
   return (
     <button className={`button ${size} ${type}`} onClick={OnClick}>
       {Icon && <Icon />}
