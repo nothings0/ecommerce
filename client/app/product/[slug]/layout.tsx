@@ -11,7 +11,7 @@ export async function generateMetadata({
   params: { slug },
 }: Params): Promise<Metadata> {
   const data: IResSimpleProduct = await (
-    await fetch(`https://ecommerce-rust-beta.vercel.app/product/${slug}`)
+    await fetch(`https://backend-ecommerce-2.onrender.com/api/product/${slug}`)
   ).json();
 
   return {
