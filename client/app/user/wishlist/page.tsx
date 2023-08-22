@@ -20,7 +20,7 @@ const page = () => {
         </>
       )}
       <ProductContainer
-        type="suggest collection"
+        heading="suggest collection"
         path="products?populate=*&pagination[page]=1&pagination[pageSize]=18"
       />
     </div>

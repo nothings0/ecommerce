@@ -136,7 +136,7 @@ const page = (context: any) => {
         )}
       </div>
       <ProductContainer
-        type="suggestion collection"
+        heading="suggestion collection"
         path="products?populate=*&pagination[pageSize]=12"
       />
     </div>
