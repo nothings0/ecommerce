@@ -6,6 +6,7 @@ import "./index.scss";
 import { AiOutlineDoubleRight } from "react-icons/ai";
 import useFetch from "@/app/Hooks/useFetch";
 import Pagination from "../Pagination";
+import Loading from "../Skeleton";
 
 interface IProps {
   type?: string;
@@ -15,11 +16,11 @@ interface IProps {
 }
 // @ts-ignore
 const ProductContainer: React.FC<IProps> = ({ type, path, page, heading }) => {
-  const { data: res } = useFetch<IResProduct>(heading, path, {
+  const { data: res, isLoading } = useFetch<IResProduct>(heading, path, {
     staleTime: 3 * 60 * 1000,
   });
   const products = res?.data;
-
+  if (isLoading) return <Loading />;
   return (
     <div className="product">
       <div className="product__container">

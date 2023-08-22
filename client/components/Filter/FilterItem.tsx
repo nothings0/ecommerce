@@ -6,6 +6,7 @@ import "./index.scss";
 import useFetch from "@/app/Hooks/useFetch";
 import { IResCategory } from "@/type";
 import { useQueryClient } from "react-query";
+import Loading from "../Skeleton";
 
 interface IProps {
   path: string;
@@ -13,7 +14,7 @@ interface IProps {
 }
 
 const FilterItem: React.FC<IProps> = ({ path, title }) => {
-  const { data: res } = useFetch<IResCategory>(path, path);
+  const { data: res, isLoading } = useFetch<IResCategory>(path, path);
   const [active, setActive] = useState(true);
   const { supplier, category, setCategory, setSupplier } = useProductStore();
 
@@ -38,6 +39,8 @@ const FilterItem: React.FC<IProps> = ({ path, title }) => {
       }
     }
   };
+  if (isLoading) return <Loading />;
+
   return (
     <div className="filter__wrap">
       <div className="filter__header">

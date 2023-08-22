@@ -10,11 +10,12 @@ import ProductContainer from "@/components/ProductContainer";
 import { fomatCurrency } from "@/utities";
 import Link from "next/link";
 import { AiFillCheckCircle } from "react-icons/ai";
+import Loading from "@/app/loading";
 
 const URL = "https://backend-ecommerce-2.onrender.com";
 const page = (context: any) => {
   const { slug } = context.params;
-  const { data: res } = useFetch<IResSimpleProduct>(
+  const { data: res, isLoading } = useFetch<IResSimpleProduct>(
     `product/${slug}`,
     `products/${slug}?populate=*`
   );
@@ -33,7 +34,7 @@ const page = (context: any) => {
   const addWishList = (product: IProduct) => {
     setWishList(product);
   };
-
+  if (isLoading) return <Loading />;
   return (
     <div className="product-detail main">
       <div className="product-detail__container">

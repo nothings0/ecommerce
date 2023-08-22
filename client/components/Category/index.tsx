@@ -5,11 +5,16 @@ import { IResCategory } from "../../type";
 import "./index.scss";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import useFetch from "@/app/Hooks/useFetch";
+import Loading from "../Skeleton";
 
 function Category() {
-  const { data } = useFetch<IResCategory>("category", "categories?populate=*", {
-    staleTime: 24 * 60 * 60 * 1000,
-  });
+  const { data, isLoading } = useFetch<IResCategory>(
+    "category",
+    "categories?populate=*",
+    {
+      staleTime: 24 * 60 * 60 * 1000,
+    }
+  );
   const [currentSlide, setCurrentSlide] = useState(0);
   const [itemPerSlide, setItemPerSlide] = useState(0);
 
@@ -35,7 +40,7 @@ function Category() {
       return;
     setCurrentSlide(indexSlide);
   };
-
+  if (isLoading) return <Loading />;
   return (
     <div className="category">
       <div className="category__wrap">

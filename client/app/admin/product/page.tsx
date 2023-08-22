@@ -6,11 +6,12 @@ import "./index.scss";
 import ProductItem from "./ProductItem";
 import Pagination from "@/components/Pagination";
 import { useSearchParams } from "next/navigation";
+import Loading from "@/app/loading";
 
 const Product = () => {
   const params = useSearchParams();
   const _page = Number(params?.get("page"));
-  const { data } = useFetch<IResProduct>(
+  const { data, isLoading } = useFetch<IResProduct>(
     `products-${_page}`,
     `products?populate=*&pagination[page]=${_page}&pagination[pageSize]=10`
   );
@@ -23,6 +24,7 @@ const Product = () => {
     const newProducts = products?.filter((item) => item.id !== id);
     setProducts(newProducts);
   };
+  if (isLoading) return <Loading />;
   return (
     <div className="product-page">
       <h4 className="product-page--heading">Kho sản phẩm</h4>

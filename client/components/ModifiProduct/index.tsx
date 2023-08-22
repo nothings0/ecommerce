@@ -11,6 +11,7 @@ import MarkdownIt from "markdown-it";
 import "react-markdown-editor-lite/lib/index.css";
 import dynamic from "next/dynamic";
 import useUserStore from "@/zustand/userSlice";
+import Loading from "../Skeleton";
 
 interface IProducts {
   name: string | undefined;
@@ -42,7 +43,10 @@ const Modify: React.FC<IProps> = ({ props }) => {
     supplier_id: props?.attributes.supplier_id.data.id,
     html: props?.attributes.html,
   });
-  const { data: categories } = useFetch<IResCategory>("category", `categories`);
+  const { data: categories, isLoading } = useFetch<IResCategory>(
+    "category",
+    `categories`
+  );
   const { data: suppliers } = useFetch<IResSupplier>("supplier", `suppliers`);
   const MdEditor = dynamic(() => import("react-markdown-editor-lite"), {
     ssr: false,
@@ -99,7 +103,7 @@ const Modify: React.FC<IProps> = ({ props }) => {
       console.log(error);
     }
   };
-
+  if (isLoading) return <Loading />;
   return (
     <div className="modify">
       <div className="modify-header">
