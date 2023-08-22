@@ -22,26 +22,6 @@ const page = (context: any) => {
   const { cart, wishlist, setCart, setWishList } = useProductStore();
   const [quantity, setQuantity] = useState<number>(1);
 
-  // useEffect(() => {
-  //   if (!product) return;
-  //   if (!localStorage.getItem("recent")) {
-  //     localStorage.setItem("recent", JSON.stringify([product]));
-  //     return;
-  //   }
-  //   const recentProduct: IProduct[] = JSON.parse(
-  //     localStorage.getItem("recent")!
-  //   );
-
-  //   if (recentProduct.some((item) => item.id === product?.id)) return;
-  //   if (recentProduct.length < 16) {
-  //     recentProduct.unshift(product!);
-  //   } else {
-  //     recentProduct.pop();
-  //     recentProduct.unshift(product!);
-  //   }
-  //   localStorage.setItem("recent", JSON.stringify(recentProduct));
-  // }, [slug, product]);
-
   const handleAdd = (product: IProduct) => {
     setCart(product);
   };
