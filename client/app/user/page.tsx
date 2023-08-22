@@ -61,7 +61,7 @@ const User = () => {
               </div>
               <div className="account__top-text">
                 <h4>{data.name}</h4>
-                <p>{data.address.text}</p>
+                <p>{data.address ? data.address.text : "chưa cài đặt"}</p>
               </div>
             </div>
             <div className="account__bottom">
@@ -117,7 +117,7 @@ const User = () => {
                 <div className="account__bottom-box--input">
                   <label htmlFor="location">Location</label>
                   <input
-                    value={values.location || data.address.text}
+                    value={values.location || data.address?.text}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     type="text"
