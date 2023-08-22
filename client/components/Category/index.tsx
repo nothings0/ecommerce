@@ -7,7 +7,9 @@ import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import useFetch from "@/app/Hooks/useFetch";
 
 function Category() {
-  const { data } = useFetch<IResCategory>("categories?populate=*");
+  const { data } = useFetch<IResCategory>("category", "categories?populate=*", {
+    staleTime: 24 * 60 * 60 * 1000,
+  });
   const [currentSlide, setCurrentSlide] = useState(0);
   const [itemPerSlide, setItemPerSlide] = useState(0);
 

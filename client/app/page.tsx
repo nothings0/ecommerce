@@ -1,5 +1,7 @@
 import Banner from "@/components/Banner";
+import BannerVertical from "@/components/Banner/BannerVertical";
 import Category from "@/components/Category";
+import Email from "@/components/Email";
 import ProductContainer from "@/components/ProductContainer";
 import ProductFamous from "@/components/ProductFamous";
 import Service from "@/components/Service";
@@ -16,6 +18,16 @@ export default function Home() {
     "pagination[page]": 1,
     "pagination[pageSize]": 6,
   });
+  const bestSellerQuery = qs.stringify({
+    populate: "*",
+    "pagination[page]": 1,
+    "pagination[pageSize]": 4,
+  });
+  const bestProductQuery = qs.stringify({
+    populate: "*",
+    "pagination[page]": 1,
+    "pagination[pageSize]": 9,
+  });
 
   return (
     <main className="main" style={{ background: "var(--main-bg)" }}>
@@ -24,11 +36,26 @@ export default function Home() {
       {/* @ts-ignore */}
       <Category />
       {/* @ts-ignore */}
-      <ProductContainer type="featured collection" path={`products?${query}`} />
+      <ProductContainer heading="Popular Category" path={`products?${query}`} />
       {/* @ts-ignore */}
       <ProductFamous />
       {/* @ts-ignore */}
-      <ProductContainer type="suggest collection" path={`products?${query}`} />
+      <ProductContainer
+        heading="Featured Products"
+        path={`products?${query}`}
+      />
+      <BannerVertical />
+      <ProductContainer
+        heading="Top Rated Products"
+        path={`products?${bestSellerQuery}`}
+        type="rate"
+      />
+      <ProductContainer
+        heading="best products"
+        path={`products?${bestProductQuery}`}
+        type="best"
+      />
+      <Email />
     </main>
   );
 }

@@ -2,15 +2,24 @@
   background-color: var(--main-bg);
   .container {
     display: flex;
-    gap: 0 20px;
+    justify-content: space-between;
+    gap: 20px;
     width: var(--max-width);
     margin: 0 auto;
     padding: 20px 0;
+    @include tablet {
+      flex-direction: column;
+      width: unset;
+      margin: 0 10px;
+    }
   }
   .main-payment {
     width: 70%;
     background-color: #fff;
     padding: 20px;
+    @include tablet {
+      width: 100%;
+    }
     h4 {
       font-size: 16px;
       text-transform: capitalize;

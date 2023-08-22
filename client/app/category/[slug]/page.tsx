@@ -10,9 +10,9 @@ const CategoryPage = (context: any) => {
   return (
     <main className="category-page main">
       <div className="category-page__container">
-        <ProductContainer type={`featured collection`} path={path} />
+        <ProductContainer heading={`featured collection`} path={path} />
         <ProductContainer
-          type="suggest collection"
+          heading="suggest collection"
           path="products?populate=*&pagination[page]=1&pagination[pageSize]=18"
         />
       </div>

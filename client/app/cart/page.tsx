@@ -1,15 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { RootState } from "@/redux/store";
-import { useDispatch, useSelector } from "react-redux";
 import CartItem from "./CartItem";
 import PayBox from "./PayBox";
 import "./index.scss";
 import { IOrder, IProduct } from "@/type";
-import { setNewOrder } from "@/redux/orderSlice";
 import { BsTrash } from "react-icons/bs";
-import { removeProduct } from "@/redux/productSlice";
+import useProductStore from "@/zustand/productSlice";
 import Modal from "@/components/Modal";
+import useOrderStore from "@/zustand/orderSlice";
 
 interface INewOrder {
   product: IProduct | null;
@@ -17,13 +15,12 @@ interface INewOrder {
 }
 
 const MainCart = () => {
-  const dispatch = useDispatch();
-
   const [isCheckedAll, setIsCheckedAll] = useState<boolean>(false);
   const [order, setOrder] = useState<IOrder[]>([]);
   const [isOpen, setOpen] = useState<boolean>(false);
 
-  const { cart } = useSelector((state: RootState) => state.product);
+  const { cart, removeProduct } = useProductStore();
+  const { setNewOrder } = useOrderStore();
 
   useEffect(() => {
     let orderBefore: IOrder[] = [];
@@ -53,7 +50,7 @@ const MainCart = () => {
         newOrder.push(newObj);
       }
     });
-    dispatch(setNewOrder(newOrder));
+    setNewOrder(newOrder);
   };
 
   const handleCheckboxChange = (id: number) => {
@@ -73,7 +70,7 @@ const MainCart = () => {
       }
     });
 
-    dispatch(setNewOrder(newOrder));
+    setNewOrder(newOrder);
     const check = arr.every((item) => item.isChecked);
 
     if (check) {
@@ -103,7 +100,7 @@ const MainCart = () => {
         newOrder.push(newObj);
       }
     });
-    dispatch(setNewOrder(newOrder));
+    setNewOrder(newOrder);
   };
 
   const productsArr = () => {
@@ -118,7 +115,7 @@ const MainCart = () => {
     const products = productsArr();
     if (products.length <= 0) return;
 
-    dispatch(removeProduct(products));
+    removeProduct(products);
     setOpen(!isOpen);
   };
   const handleOpen = () => {

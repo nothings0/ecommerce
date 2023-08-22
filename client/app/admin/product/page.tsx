@@ -9,8 +9,9 @@ import { useSearchParams } from "next/navigation";
 
 const Product = () => {
   const params = useSearchParams();
-  const _page = Number(params.get("page"));
+  const _page = Number(params?.get("page"));
   const { data } = useFetch<IResProduct>(
+    `products-${_page}`,
     `products?populate=*&pagination[page]=${_page}&pagination[pageSize]=10`
   );
   const [products, setProducts] = useState<IProduct[]>([]);

@@ -5,23 +5,21 @@ import { IProduct, IResSimpleProduct } from "@/type";
 import Image from "next/image";
 import "./index.scss";
 import Button from "@/components/Button";
-import { useDispatch, useSelector } from "react-redux";
-import { setCart, setWishList } from "@/redux/productSlice";
+import useProductStore from "@/zustand/productSlice";
 import ProductContainer from "@/components/ProductContainer";
 import { fomatCurrency } from "@/utities";
-import { RootState } from "@/redux/store";
 import Link from "next/link";
 import { AiFillCheckCircle } from "react-icons/ai";
 
-const URL = "http://127.0.0.1:1337";
+const URL = "http://127.0.0.1:5432";
 const page = (context: any) => {
   const { slug } = context.params;
   const { data: res } = useFetch<IResSimpleProduct>(
+    `product/${slug}`,
     `products/${slug}?populate=*`
   );
   const product = res?.data;
-  const dispatch = useDispatch();
-  const { cart, wishlist } = useSelector((state: RootState) => state.product);
+  const { cart, wishlist, setCart, setWishList } = useProductStore();
   const [quantity, setQuantity] = useState<number>(1);
 
   useEffect(() => {
@@ -45,7 +43,7 @@ const page = (context: any) => {
   }, [slug, product]);
 
   const handleAdd = (product: IProduct) => {
-    dispatch(setCart(product));
+    setCart(product);
   };
 
   const isCart = () => {
@@ -53,7 +51,7 @@ const page = (context: any) => {
   };
 
   const addWishList = (product: IProduct) => {
-    dispatch(setWishList(product));
+    setWishList(product);
   };
 
   return (

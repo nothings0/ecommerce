@@ -8,7 +8,7 @@ interface IProps {
   type: string;
   quantity: number;
 }
-const URL = "http://127.0.0.1:1337";
+const URL = "http://127.0.0.1:5432";
 const OrderItem: React.FC<IProps> = ({ data, type, quantity }) => {
   return (
     <div className="order-item">

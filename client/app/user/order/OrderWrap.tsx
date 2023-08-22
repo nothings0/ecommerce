@@ -5,15 +5,14 @@ import qs from "querystring";
 import OrderItem from "./OrderItem";
 import Link from "next/link";
 import useFetchWithPermision from "@/app/Hooks/useFetchWithPermision";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
+import useUserStore from "@/zustand/userSlice";
 
 interface IProps {
   type: string;
 }
 
 const OrderWrap: React.FC<IProps> = ({ type }) => {
-  const { jwt } = useSelector((state: RootState) => state.user);
+  const { jwt } = useUserStore();
   const query = qs.stringify({
     populate: ["order_details.product.picture_cover", "status"],
   });

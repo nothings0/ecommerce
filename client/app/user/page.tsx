@@ -1,19 +1,17 @@
 "use client";
 import React from "react";
 import useFetchWithPermision from "../Hooks/useFetchWithPermision";
-import { useSelector } from "react-redux";
 import Image from "next/image";
-import { RootState } from "@/redux/store";
 import order_1 from "@/assets/order-1.png";
 import Button from "@/components/Button";
 import { FaPen } from "react-icons/fa";
 import { IUser } from "@/type";
-// import axiosClient from "@/config/axiosConfig";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import useUserStore from "@/zustand/userSlice";
 
 const User = () => {
-  const { jwt } = useSelector((state: RootState) => state.user);
+  const { jwt } = useUserStore();
   const { data } = useFetchWithPermision<IUser>("/users/me", jwt);
 
   // const updateUser = async () => {

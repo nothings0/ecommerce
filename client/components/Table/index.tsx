@@ -1,20 +1,19 @@
 "use client";
 import React, { useState } from "react";
 import useFetchWithPermision from "@/app/Hooks/useFetchWithPermision";
-import { RootState } from "@/redux/store";
-import { useSelector } from "react-redux";
 import "./index.scss";
 import { IUser } from "@/type";
 import { BsFillEyeFill, BsTrash } from "react-icons/bs";
 import Modal from "../Modal";
 import moment from "moment";
+import useUserStore from "@/zustand/userSlice";
 
 const Table = () => {
   const [otp, setOpt] = useState<number>(1);
   const [isOpen, setOpen] = useState<boolean>(false);
   const [user, setUser] = useState<IUser>();
 
-  const { jwt } = useSelector((state: RootState) => state.user);
+  const { jwt } = useUserStore();
   const { data } = useFetchWithPermision<IUser[]>("users", jwt);
 
   const handleUser = (dataUser: IUser, x: number) => {

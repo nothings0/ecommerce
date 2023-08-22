@@ -1,24 +1,24 @@
+import React, { useState } from "react";
 import Button from "@/components/Button";
 import Modal from "@/components/Modal";
 import axiosClient from "@/config/axiosConfig";
-import { removeProduct } from "@/redux/productSlice";
-import { RootState } from "@/redux/store";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import useUserStore from "@/zustand/userSlice";
+import useOrderStore from "@/zustand/orderSlice";
+import useProductStore from "@/zustand/productSlice";
 
 interface IProps {
   onHandleIndex: (x: string) => void;
 }
 
 const ConfirmForm: React.FC<IProps> = ({ onHandleIndex }) => {
-  const { user } = useSelector((state: RootState) => state.user);
-  const { order } = useSelector((state: RootState) => state.order);
+  const { user, jwt } = useUserStore();
+  const { order } = useOrderStore();
+  const { removeProduct } = useProductStore();
+
   const [isOpen, setOpen] = useState<boolean>(false);
 
   const router = useRouter();
-  const dispatch = useDispatch();
-  const { jwt } = useSelector((state: RootState) => state.user);
   const handleOrder = async () => {
     const data = {
       customer_id: user?.id,
@@ -30,7 +30,7 @@ const ConfirmForm: React.FC<IProps> = ({ onHandleIndex }) => {
           Authorization: `Bearer ${jwt}`,
         },
       });
-      dispatch(removeProduct(order));
+      removeProduct(order);
       setOpen(!isOpen);
     } catch (error) {
       console.log(error);

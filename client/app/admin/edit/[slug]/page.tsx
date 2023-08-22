@@ -7,6 +7,7 @@ import { IResSimpleProduct } from "@/type";
 const Edit = (context: any) => {
   const { slug } = context.params;
   const { data: res } = useFetch<IResSimpleProduct>(
+    `product/${slug}`,
     `products/${slug}?populate=*`
   );
   const product = res?.data;

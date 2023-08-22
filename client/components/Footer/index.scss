@@ -37,28 +37,7 @@
       flex: 1 1 100%;
     }
   }
-  &__contact {
-    flex: 1 1 30%;
-    @include mobile {
-      flex: 1 1 100%;
-    }
-    .input {
-      position: relative;
-      margin-top: 1.5rem;
-      input {
-        width: 100%;
-        padding: 10px 85px 10px 8px;
-        border-radius: 4px;
-        font-size: 18px;
-      }
-      .button {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-      }
-    }
-  }
+
   &__item {
     display: flex;
     flex-direction: column;

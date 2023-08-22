@@ -1,14 +1,12 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { IProduct } from "@/type";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import "./cart.scss";
 import Link from "next/link";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
+import useProductStore from "@/zustand/productSlice";
 const Cart = () => {
   const [quantity, setQuantity] = useState<number>(0);
-  const { cart } = useSelector((state: RootState) => state.product);
+  const { cart } = useProductStore();
   useEffect(() => {
     setQuantity(cart.length);
   }, [cart.length]);

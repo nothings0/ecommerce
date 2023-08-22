@@ -20,6 +20,10 @@ const footerData = [
     heading: "Liên hệ",
     texts: ["Facebook", "Instagram", "Linkedln"],
   },
+  {
+    heading: "General link",
+    texts: ["Blog", "Shop", "Instagram", "Category"],
+  },
 ];
 
 const Header: React.FC = () => {
@@ -36,15 +40,6 @@ const Header: React.FC = () => {
                 ))}
               </div>
             ))}
-          </div>
-          <div className="footer__contact">
-            <h4>Subscribe to our newsletter</h4>
-            <div className="input">
-              <input type="text" placeholder="your email" />
-              <Button type="primary" size="md">
-                Submit
-              </Button>
-            </div>
           </div>
         </div>
         <hr />

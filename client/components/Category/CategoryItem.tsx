@@ -6,7 +6,7 @@ import React from "react";
 interface IProps {
   category: ICategory;
 }
-const URL = "http://127.0.0.1:1337";
+const URL = "http://127.0.0.1:5432";
 const CategoryItem: React.FC<IProps> = ({ category }) => {
   return (
     <div className="category__item">

@@ -5,17 +5,14 @@ import SelectProvince from "./SelectProvince";
 import SelectWard from "./SelectWard";
 import axios from "axios";
 import Button from "@/components/Button";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
-import { handleUpdate } from "@/redux/userSlice";
+import useUserStore from "@/zustand/userSlice";
 
 interface IProps {
   onHandleIndex: (x: string) => void;
 }
 
 const AddressForm: React.FC<IProps> = ({ onHandleIndex }) => {
-  const { user, jwt } = useSelector((state: RootState) => state.user);
-  const dispatch = useDispatch();
+  const { user, jwt, handleUpdate } = useUserStore();
   const arr = user?.address && {
     text: user?.address.text.split(", "),
     code: user?.address.code.split(", "),
@@ -49,7 +46,7 @@ const AddressForm: React.FC<IProps> = ({ onHandleIndex }) => {
     };
     try {
       const res = await axios.put(
-        `http://127.0.0.1:1337/api/users/${user?.id}`,
+        `http://127.0.0.1:5432/api/users/${user?.id}`,
         {
           address: address,
           name,
@@ -62,7 +59,7 @@ const AddressForm: React.FC<IProps> = ({ onHandleIndex }) => {
         }
       );
 
-      dispatch(handleUpdate(res.data));
+      handleUpdate(res.data);
     } catch (error) {
       console.log(error);
     }

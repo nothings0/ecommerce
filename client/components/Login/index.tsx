@@ -4,8 +4,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Button from "../Button";
 import "./index.scss";
-import { useDispatch } from "react-redux";
-import { handleLogin } from "@/redux/userSlice";
+import useUserStore from "@/zustand/userSlice";
 import Cookies from "js-cookie";
 import axiosClient from "@/config/axiosConfig";
 import { useFormik } from "formik";
@@ -13,8 +12,7 @@ import * as Yup from "yup";
 
 const Login: React.FC = () => {
   const router = useRouter();
-  const dispatch = useDispatch();
-
+  const { handleLogin } = useUserStore();
   const [error, setError] = useState<string>("");
   const { handleSubmit, handleBlur, handleChange, touched, errors, values } =
     useFormik({
@@ -40,7 +38,7 @@ const Login: React.FC = () => {
         };
         try {
           const res = await axiosClient.post("/auth/local", data);
-          dispatch(handleLogin(res.data));
+          handleLogin(res.data);
           Cookies.set("token", res.data.jwt, {
             expires: 7,
             sameSite: "strict",

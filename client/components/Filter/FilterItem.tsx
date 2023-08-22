@@ -1,12 +1,11 @@
 "use client";
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setCategory, setSupplier } from "../../redux/productSlice";
+import useProductStore from "../../zustand/productSlice";
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import "./index.scss";
 import useFetch from "@/app/Hooks/useFetch";
 import { IResCategory } from "@/type";
-import { RootState } from "@/redux/store";
+import { useQueryClient } from "react-query";
 
 interface IProps {
   path: string;
@@ -14,25 +13,28 @@ interface IProps {
 }
 
 const FilterItem: React.FC<IProps> = ({ path, title }) => {
-  const dispatch = useDispatch();
-  const { data: res } = useFetch<IResCategory>(`${path}`);
+  const { data: res } = useFetch<IResCategory>(path, path);
   const [active, setActive] = useState(true);
-  const { supplier, category } = useSelector(
-    (state: RootState) => state.product
-  );
+  const { supplier, category, setCategory, setSupplier } = useProductStore();
+
+  const queryClient = useQueryClient();
 
   const handleSetSearch = (value: string) => {
     if (path === "suppliers") {
       if (value === supplier) {
-        dispatch(setSupplier(""));
+        setSupplier("");
+        queryClient.invalidateQueries("suppliers");
       } else {
-        dispatch(setSupplier(value));
+        setSupplier(value);
+        queryClient.invalidateQueries("suppliers");
       }
     } else {
       if (value === category) {
-        dispatch(setCategory(""));
+        setCategory("");
+        queryClient.invalidateQueries("category");
       } else {
-        dispatch(setCategory(value));
+        setCategory(value);
+        queryClient.invalidateQueries("category");
       }
     }
   };

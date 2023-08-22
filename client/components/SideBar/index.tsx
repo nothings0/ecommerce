@@ -3,10 +3,9 @@ import React from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { AiOutlineLogout } from "react-icons/ai";
-import { useDispatch } from "react-redux";
-import { handleLogout } from "@/redux/userSlice";
 import Cookies from "js-cookie";
 import "./index.scss";
+import useUserStore from "@/zustand/userSlice";
 
 interface IProps {
   data: {
@@ -18,11 +17,12 @@ interface IProps {
 
 const SideBar: React.FC<IProps> = ({ data }) => {
   const pathname = usePathname();
-  const dispatch = useDispatch();
   const router = useRouter();
 
+  const { handleLogout } = useUserStore();
+
   const handleLogoutUser = () => {
-    dispatch(handleLogout());
+    handleLogout();
     router.push("/");
     Cookies.remove("token", { path: "/", domain: "localhost" });
   };

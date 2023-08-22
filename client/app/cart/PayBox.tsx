@@ -1,13 +1,12 @@
 import Button from "@/components/Button";
-import { RootState } from "@/redux/store";
 import { IOrder } from "@/type";
 import { fomatCurrency } from "@/utities";
 import Link from "next/link";
 import React from "react";
-import { useSelector } from "react-redux";
+import useOrderStore from "@/zustand/orderSlice";
 
 const PayBox = () => {
-  const { order } = useSelector((state: RootState) => state.order);
+  const { order } = useOrderStore();
   const handleTotal = (order: IOrder[]) => {
     let total = 0;
     if (order.length > 0) {

@@ -8,20 +8,23 @@ import useFetch from "@/app/Hooks/useFetch";
 import Pagination from "../Pagination";
 
 interface IProps {
-  type: string;
+  type?: string;
   path: string;
+  heading: string;
   page?: number;
 }
 // @ts-ignore
-const ProductContainer: React.FC<IProps> = ({ type, path, page }) => {
-  const { data: res } = useFetch<IResProduct>(`${path}`);
+const ProductContainer: React.FC<IProps> = ({ type, path, page, heading }) => {
+  const { data: res } = useFetch<IResProduct>(heading, path, {
+    staleTime: 3 * 60 * 1000,
+  });
   const products = res?.data;
 
   return (
     <div className="product">
       <div className="product__container">
         <div className="product__type">
-          <h4>{type}</h4>
+          <h4>{heading}</h4>
 
           {res?.meta.pagination.pageCount! > res?.meta.pagination.pageSize! && (
             <span>
@@ -29,10 +32,10 @@ const ProductContainer: React.FC<IProps> = ({ type, path, page }) => {
             </span>
           )}
         </div>
-        <div className="product__wrap">
+        <div className={`product__wrap ${type}`}>
           {products && products.length > 0 ? (
             products?.map((item) => (
-              <ProductCard product={item} key={item.id} />
+              <ProductCard product={item} key={item.id} type={type} />
             ))
           ) : (
             <p>Không có dữ liệu</p>

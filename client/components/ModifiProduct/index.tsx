@@ -4,14 +4,13 @@ import Button from "@/components/Button";
 import "./index.scss";
 import Image from "next/image";
 import axiosClient from "@/config/axiosConfig";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
 import { useRouter } from "next/navigation";
 import { IResSupplier, IResCategory, IProduct } from "@/type";
 import useFetch from "@/app/Hooks/useFetch";
 import MarkdownIt from "markdown-it";
 import "react-markdown-editor-lite/lib/index.css";
 import dynamic from "next/dynamic";
+import useUserStore from "@/zustand/userSlice";
 
 interface IProducts {
   name: string | undefined;
@@ -27,10 +26,10 @@ interface IProducts {
 interface IProps {
   props?: IProduct;
 }
-const BASE_URL = "http://127.0.0.1:1337";
+const BASE_URL = "http://127.0.0.1:5432";
 
 const Modify: React.FC<IProps> = ({ props }) => {
-  const { jwt } = useSelector((state: RootState) => state.user);
+  const { jwt } = useUserStore();
   const router = useRouter();
   const [thumb, setThumb] = useState<File>();
   const [product, setProduct] = useState<IProducts>({
@@ -43,8 +42,8 @@ const Modify: React.FC<IProps> = ({ props }) => {
     supplier_id: props?.attributes.supplier_id.data.id,
     html: props?.attributes.html,
   });
-  const { data: categories } = useFetch<IResCategory>(`categories`);
-  const { data: suppliers } = useFetch<IResSupplier>(`suppliers`);
+  const { data: categories } = useFetch<IResCategory>("category", `categories`);
+  const { data: suppliers } = useFetch<IResSupplier>("supplier", `suppliers`);
   const MdEditor = dynamic(() => import("react-markdown-editor-lite"), {
     ssr: false,
   });

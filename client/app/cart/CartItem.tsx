@@ -5,8 +5,7 @@ import { BsTrash } from "react-icons/bs";
 import Link from "next/link";
 import { fomatCurrency } from "@/utities";
 import Modal from "@/components/Modal";
-import { useDispatch } from "react-redux";
-import { removeCart } from "@/redux/productSlice";
+import useProductStore from "@/zustand/productSlice";
 
 interface IProps {
   data: IOrder;
@@ -14,13 +13,12 @@ interface IProps {
   onHandleQuantity: (quantity: number, id: number) => void;
 }
 
-const URL = "http://127.0.0.1:1337";
+const URL = "http://127.0.0.1:5432";
 const CartItem: React.FC<IProps> = ({ onChange, data, onHandleQuantity }) => {
   const { product, quantity, isChecked } = data;
   const [currentQuantity, setCurrentQuantity] = useState<number>(quantity!);
   const [isOpen, setOpen] = useState<boolean>(false);
-
-  const dispatch = useDispatch();
+  const { removeCart } = useProductStore();
 
   const handleQuantity = (qnt: number) => {
     if (qnt === 0 || isNaN(qnt)) return;
@@ -29,7 +27,7 @@ const CartItem: React.FC<IProps> = ({ onChange, data, onHandleQuantity }) => {
   };
 
   const handleRemove = () => {
-    dispatch(removeCart([product]));
+    removeCart([product!]);
     setOpen(!isOpen);
   };
 

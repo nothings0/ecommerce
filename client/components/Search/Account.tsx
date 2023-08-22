@@ -1,20 +1,23 @@
-import { RootState } from "@/redux/store";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import React from "react";
 import { AiOutlineUser } from "react-icons/ai";
-import { useSelector } from "react-redux";
 import "./account.scss";
+import useUserStore from "@/zustand/userSlice";
 
 const Account = () => {
-  const { user } = useSelector((state: RootState) => state.user);
+  const { user } = useUserStore((state) => state);
+  const [userState, setUserState] = useState<any>();
+
+  useEffect(() => {
+    setUserState(user);
+  }, [userState]);
 
   return (
     <>
-      {user ? (
+      {userState ? (
         <Link href="/user">
           <div className="account-btn">
             <AiOutlineUser size={25} />
-            <span>Tài khoản</span>
           </div>
         </Link>
       ) : (

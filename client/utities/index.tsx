@@ -25,7 +25,10 @@ export function checkAndModifyArrayOrder(arr: IOder[], obj: IOder): void {
     }
   }
 }
-export function checkAndModifyArray(arr: IProduct[], obj: IProduct): void {
+export function checkAndModifyArray(
+  arr: IProduct[],
+  obj: IProduct
+): IProduct[] {
   const index = arr.findIndex((e) => e.id === obj.id);
 
   if (index === -1) {
@@ -35,6 +38,7 @@ export function checkAndModifyArray(arr: IProduct[], obj: IProduct): void {
     // Remove the object from the array
     arr.splice(index, 1);
   }
+  return arr;
 }
 
 export function checkContain(arr: IOrder[], obj: IProduct | null): boolean {

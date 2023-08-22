@@ -1,9 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import useFetchWithPermision from "@/app/Hooks/useFetchWithPermision";
-import { RootState } from "@/redux/store";
 import { IResAOrderServer, IOrderDetail } from "@/type";
-import { useSelector } from "react-redux";
 import { fomatCurrency } from "@/utities";
 import qs from "querystring";
 import "@/app/user/order/[slug]/index.scss";
@@ -14,14 +12,15 @@ import axiosClient from "@/config/axiosConfig";
 import { useRouter } from "next/navigation";
 import Modal from "@/components/Modal";
 import Link from "next/link";
+import useUserStore from "@/zustand/userSlice";
 
-const URL = "http://127.0.0.1:1337";
+const URL = "http://127.0.0.1:5432";
 
 const OrderDetail = (context: any) => {
   const [isOpen, setOpen] = useState<boolean>(false);
   const [modalOpt, setModalOtp] = useState<number>(0);
   const { slug } = context.params;
-  const { jwt } = useSelector((state: RootState) => state.user);
+  const { jwt } = useUserStore();
   const router = useRouter();
   const query = qs.stringify({
     populate: ["order_details.product.picture_cover", "status", "user"],

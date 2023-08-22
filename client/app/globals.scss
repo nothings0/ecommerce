@@ -93,6 +93,7 @@
 .main {
   margin-top: var(--main-header-h);
   min-height: 100vh;
+  padding-bottom: 40px;
   @include tablet {
     margin-top: var(--main-header-h-mb) !important;
   }

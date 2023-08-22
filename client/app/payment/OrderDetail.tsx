@@ -1,10 +1,9 @@
 "use client";
 import React, { useMemo, useState } from "react";
-import { RootState } from "@/redux/store";
 import { fomatCurrency } from "@/utities";
 import Image from "next/image";
 import Link from "next/link";
-import { useSelector } from "react-redux";
+import useOrderStore from "@/zustand/orderSlice";
 
 const configPayment = {
   priceShip: 25000,
@@ -12,9 +11,9 @@ const configPayment = {
   vat: 0.05,
 };
 
-const URL = "http://127.0.0.1:1337";
+const URL = "http://127.0.0.1:5432";
 const OrderDetail = () => {
-  const { order } = useSelector((state: RootState) => state.order);
+  const { order } = useOrderStore();
   const [active, setActive] = useState<boolean>(false);
 
   const price = useMemo(() => {

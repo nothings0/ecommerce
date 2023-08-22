@@ -23,18 +23,6 @@ const dataSlide = [
     type: "supercharged for pros",
     img: mainBanner,
   },
-  {
-    desc: "from $199.99 or $41.62/mo for 24 mo. Footnote",
-    name: "ipad s13 pro",
-    type: "supercharged for pros",
-    img: mainBanner,
-  },
-  {
-    desc: "from $199.99 or $41.62/mo for 24 mo. Footnote",
-    name: "ipad s13 pro",
-    type: "supercharged for pros",
-    img: mainBanner,
-  },
 ];
 
 const BannerSlide: React.FC = () => {
@@ -70,19 +58,16 @@ const BannerSlide: React.FC = () => {
           </div>
         </div>
       ))}
-      <div
-        className={`prev banner__slide--button ${index === 0 ? "disable" : ""}`}
-        onClick={() => handleIndex(index - 1)}
-      >
-        <BsChevronLeft />
-      </div>
-      <div
-        className={`next banner__slide--button ${
-          index === dataSlide.length - 1 ? "disable" : ""
-        }`}
-        onClick={() => handleIndex(index + 1)}
-      >
-        <BsChevronRight />
+      <div className="banner__slide--button">
+        {dataSlide.map((_, idx) => (
+          <div
+            className={`banner__slide--button-item ${
+              index === idx ? "active" : ""
+            }`}
+            key={idx}
+            onClick={() => handleIndex(idx)}
+          ></div>
+        ))}
       </div>
     </div>
   );

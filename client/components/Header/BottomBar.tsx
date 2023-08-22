@@ -7,8 +7,13 @@ import useClickOutside from "@/app/Hooks/useClickOutside";
 const dropDown = [
   {
     name: "computer & laptop",
-    slug: "computer-laptop",
+    slug: "computer",
     id: 1,
+  },
+  {
+    name: "airpod",
+    slug: "airpod",
+    id: 4,
   },
   {
     name: "smart television",
@@ -16,34 +21,44 @@ const dropDown = [
     id: 2,
   },
   {
-    name: "smartwatch",
-    slug: "smartwatch",
+    name: "keyboard",
+    slug: "keyboard",
     id: 3,
   },
   {
-    name: "mobile & tablet",
-    slug: "mobile-tablet",
-    id: 4,
+    name: "mouse",
+    slug: "mouse",
+    id: 8,
   },
+  {
+    name: "smartphone",
+    slug: "smartphone",
+    id: 9,
+  },
+  {
+    name: "camera",
+    slug: "camera",
+    id: 10,
+  },
+  // {
+  //   name: "mobile & tablet",
+  //   slug: "mobile-tablet",
+  //   id: 4,
+  // },
   {
     name: "headphone",
     slug: "headphone",
     id: 5,
   },
   {
-    name: "portable speaker",
-    slug: "portable-speaker",
+    name: "speaker",
+    slug: "speaker",
     id: 6,
   },
   {
     name: "acessories",
     slug: "acessories",
     id: 7,
-  },
-  {
-    name: "home appliance",
-    slug: "home-appliance",
-    id: 8,
   },
 ];
 

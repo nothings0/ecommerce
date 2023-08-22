@@ -11,7 +11,7 @@ interface IProps {
   product: IProduct;
   onHandleDelete: (id: number) => void;
 }
-const URL = "http://127.0.0.1:1337";
+const URL = "http://127.0.0.1:5432";
 const ProductItem: React.FC<IProps> = ({ product, onHandleDelete }) => {
   const [isOpen, setOpen] = useState<boolean>(false);
   const onHandleDeleteA = () => {

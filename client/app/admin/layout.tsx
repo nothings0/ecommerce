@@ -1,5 +1,5 @@
 import React from "react";
-import SideBar from "@/components/SideBar";
+import SideBar from "./Sidebar";
 import { RxDashboard } from "react-icons/rx";
 import "./index.scss";
 import {
@@ -37,7 +37,7 @@ const layout = ({
 }) => {
   return (
     <div className="admin main">
-      <SideBar data={SideBarData} />
+      <SideBar />
       <div className="admin-main">
         <div className="container">{children}</div>
       </div>

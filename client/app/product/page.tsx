@@ -2,18 +2,15 @@
 import React from "react";
 import Filter from "@/components/Filter";
 import ProductContainer from "@/components/ProductContainer";
-import { RootState } from "@/redux/store";
 import { useSearchParams } from "next/navigation";
-import { useSelector } from "react-redux";
 import "./index.scss";
+import useProductStore from "@/zustand/productSlice";
 
 const MainStore = () => {
   const params = useSearchParams();
   const _page = Number(params?.get("page"));
 
-  const { supplier, category } = useSelector(
-    (state: RootState) => state.product
-  );
+  const { supplier, category } = useProductStore();
 
   const path = () => {
     if (supplier && category) {
@@ -26,12 +23,15 @@ const MainStore = () => {
       return `products?populate=*&pagination[page]=${_page}&pagination[pageSize]=18`;
     }
   };
+
+  console.log(path(), category);
+
   return (
     <div className="store">
       <Filter />
       <main className="store__main main">
         <ProductContainer
-          type={`${supplier || category} collection`}
+          heading={`${supplier || category} collection`}
           path={path()}
           page={_page || 1}
         />

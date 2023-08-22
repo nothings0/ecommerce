@@ -14,8 +14,6 @@ import {
 } from "react-icons/ai";
 import Link from "next/link";
 import useClickOutside from "@/app/Hooks/useClickOutside";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
 import { BsChevronDown } from "react-icons/bs";
 
 const menuData = [
@@ -49,8 +47,13 @@ const menuData = [
 const dropDown = [
   {
     name: "computer & laptop",
-    slug: "computer-laptop",
+    slug: "computer",
     id: 1,
+  },
+  {
+    name: "airpod",
+    slug: "airpod",
+    id: 4,
   },
   {
     name: "smart television",
@@ -58,23 +61,38 @@ const dropDown = [
     id: 2,
   },
   {
-    name: "smartwatch",
-    slug: "smartwatch",
+    name: "keyboard",
+    slug: "keyboard",
     id: 3,
   },
   {
-    name: "mobile & tablet",
-    slug: "mobile-tablet",
-    id: 4,
+    name: "mouse",
+    slug: "mouse",
+    id: 8,
   },
+  {
+    name: "smartphone",
+    slug: "smartphone",
+    id: 9,
+  },
+  {
+    name: "camera",
+    slug: "camera",
+    id: 10,
+  },
+  // {
+  //   name: "mobile & tablet",
+  //   slug: "mobile-tablet",
+  //   id: 4,
+  // },
   {
     name: "headphone",
     slug: "headphone",
     id: 5,
   },
   {
-    name: "portable speaker",
-    slug: "portable-speaker",
+    name: "speaker",
+    slug: "speaker",
     id: 6,
   },
   {
@@ -82,17 +100,11 @@ const dropDown = [
     slug: "acessories",
     id: 7,
   },
-  {
-    name: "home appliance",
-    slug: "home-appliance",
-    id: 8,
-  },
 ];
 
 const Search = () => {
   const [active, setActive] = useState<boolean>(false);
   const menuRef = useRef(null);
-  const { jwt } = useSelector((state: RootState) => state.user);
   useClickOutside(menuRef, active, setActive);
 
   return (

@@ -1,13 +1,12 @@
 "use client";
 import ProductCard from "@/components/ProductCard";
 import ProductContainer from "@/components/ProductContainer";
-import { RootState } from "@/redux/store";
 import React from "react";
-import { useSelector } from "react-redux";
 import "./index.scss";
+import useProductStore from "@/zustand/productSlice";
 
 const page = () => {
-  const { wishlist } = useSelector((state: RootState) => state.product);
+  const { wishlist } = useProductStore();
   return (
     <div className="wishlist">
       {wishlist.length > 0 && (
