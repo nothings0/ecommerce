@@ -1,6 +1,6 @@
 import axiosClient from "@/config/axiosConfig";
 import { useEffect, useCallback, useState } from "react";
-const URL = "http://127.0.0.1:5432/api/";
+const URL = "https://backend-ecommerce-2.onrender.com/api/";
 export default function useDebounce<T = unknown>(path: string, delay: number) {
   const [data, setData] = useState<T | null>(null);
   const fetchData = async () => {

@@ -26,7 +26,7 @@ interface IProducts {
 interface IProps {
   props?: IProduct;
 }
-const BASE_URL = "http://127.0.0.1:5432";
+const BASE_URL = "https://backend-ecommerce-2.onrender.com";
 
 const Modify: React.FC<IProps> = ({ props }) => {
   const { jwt } = useUserStore();

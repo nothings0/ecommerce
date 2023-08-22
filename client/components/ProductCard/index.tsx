@@ -10,7 +10,7 @@ interface IProps {
   product: IProduct;
   type?: string;
 }
-const URL = "http://127.0.0.1:5432";
+const URL = "https://backend-ecommerce-2.onrender.com";
 const ProductCard: React.FC<IProps> = ({ product, type }) => {
   const { cart, setCart } = useProductStore();
   const active = cart.some((p) => p.id === product.id);

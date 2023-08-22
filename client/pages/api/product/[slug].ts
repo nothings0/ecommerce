@@ -11,7 +11,9 @@ export default async function handler(
 ) {
   const { slug } = req.query;
   const data: IResSimpleProduct = await (
-    await fetch(`http://127.0.0.1:5432/api/products/${slug}?populate=*`)
+    await fetch(
+      `https://backend-ecommerce-2.onrender.com/api/products/${slug}?populate=*`
+    )
   ).json();
 
   res.status(200).json(data);

@@ -6,7 +6,7 @@ import Image from "next/image";
 interface IProps {
   data: IProduct;
 }
-const URL = "http://127.0.0.1:5432";
+const URL = "https://backend-ecommerce-2.onrender.com";
 const SearchResult: React.FC<IProps> = ({ data }) => {
   return (
     <Link href={`/product/${data.id}`} className="search__result__item">

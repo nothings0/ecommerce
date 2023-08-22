@@ -11,7 +11,7 @@ import { fomatCurrency } from "@/utities";
 import Link from "next/link";
 import { AiFillCheckCircle } from "react-icons/ai";
 
-const URL = "http://127.0.0.1:5432";
+const URL = "https://backend-ecommerce-2.onrender.com";
 const page = (context: any) => {
   const { slug } = context.params;
   const { data: res } = useFetch<IResSimpleProduct>(

@@ -14,7 +14,7 @@ import Modal from "@/components/Modal";
 import Link from "next/link";
 import useUserStore from "@/zustand/userSlice";
 
-const URL = "http://127.0.0.1:5432";
+const URL = "https://backend-ecommerce-2.onrender.com";
 
 const OrderDetail = (context: any) => {
   const [isOpen, setOpen] = useState<boolean>(false);
