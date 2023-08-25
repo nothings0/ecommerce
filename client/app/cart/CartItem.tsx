@@ -20,10 +20,23 @@ const CartItem: React.FC<IProps> = ({ onChange, data, onHandleQuantity }) => {
   const [isOpen, setOpen] = useState<boolean>(false);
   const { removeCart } = useProductStore();
 
-  const handleQuantity = (qnt: number) => {
-    if (qnt === 0 || isNaN(qnt)) return;
-    setCurrentQuantity(qnt);
-    onHandleQuantity(qnt, product!.id);
+  const handleQuantity = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (isNaN(parseFloat(e.target.value))) {
+      setCurrentQuantity(0);
+      onHandleQuantity(0, product!.id);
+    } else {
+      setCurrentQuantity(parseFloat(e.target.value));
+      onHandleQuantity(parseFloat(e.target.value), product!.id);
+    }
+  };
+  const hanleQuantity2 = (qnt: number) => {
+    if (qnt < 1) {
+      setCurrentQuantity(1);
+      onHandleQuantity(1, product!.id);
+    } else {
+      setCurrentQuantity(qnt);
+      onHandleQuantity(qnt, product!.id);
+    }
   };
 
   const handleRemove = () => {
@@ -67,17 +80,17 @@ const CartItem: React.FC<IProps> = ({ onChange, data, onHandleQuantity }) => {
             {fomatCurrency(product.attributes.price)}
           </span>
           <div style={{ flex: 1 }} className="quantity">
-            <span onClick={() => handleQuantity(quantity! - 1)}>-</span>
+            <span onClick={() => hanleQuantity2(quantity! - 1)}>-</span>
             <span>
               <input
                 type="tel"
                 value={currentQuantity.toString()}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  handleQuantity(Number(e.target.value))
+                  handleQuantity(e)
                 }
               />
             </span>
-            <span onClick={() => handleQuantity(quantity! + 1)}>+</span>
+            <span onClick={() => hanleQuantity2(quantity! + 1)}>+</span>
           </div>
           <span style={{ flex: 1 }}>
             {fomatCurrency(quantity! * product.attributes.price)}

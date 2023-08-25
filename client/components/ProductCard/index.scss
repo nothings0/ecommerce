@@ -6,6 +6,7 @@
   flex-direction: column;
   position: relative;
   overflow: hidden;
+  border-radius: 2px;
   img {
     padding: 14px;
     width: 100%;
@@ -30,18 +31,16 @@
       margin-top: 0;
       padding: 20px 10px;
       justify-content: center;
-      &__btn {
-        button {
-          padding: 10px 24px;
-          border-radius: 5px;
-          color: #fff;
-          background-color: var(--main-color);
-          cursor: pointer;
-          font-size: 15px;
-        }
+      border-top: none;
+      span {
+        font-size: 16px;
       }
       h3 {
-        font-size: 17px;
+        font-size: 19px;
+        cursor: pointer;
+      }
+      p {
+        font-size: 15px;
       }
     }
   }
@@ -57,6 +56,7 @@
       margin-top: 0;
       padding: 20px 10px;
       justify-content: center;
+      border-top: none;
       &__btn {
         button {
           padding: 10px 24px;
@@ -86,6 +86,7 @@
     justify-content: space-between;
     flex-direction: column;
     gap: 14px 10px;
+    border-top: 1px solid var(--main-bg);
     span {
       color: rgb(255, 85, 0);
       font-size: 12px;

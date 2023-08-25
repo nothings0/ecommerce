@@ -9,7 +9,6 @@ import useProductStore from "@/zustand/productSlice";
 import ProductContainer from "@/components/ProductContainer";
 import { fomatCurrency } from "@/utities";
 import Link from "next/link";
-import { AiFillCheckCircle } from "react-icons/ai";
 import Loading from "@/app/loading";
 
 const URL = "https://backend-ecommerce-2.onrender.com";
@@ -22,6 +21,7 @@ const page = (context: any) => {
   const product = res?.data;
   const { cart, wishlist, setCart, setWishList } = useProductStore();
   const [quantity, setQuantity] = useState<number>(1);
+  const [isMore, setMore] = useState<boolean>(false);
 
   const handleAdd = (product: IProduct) => {
     setCart(product);
@@ -34,6 +34,15 @@ const page = (context: any) => {
   const addWishList = (product: IProduct) => {
     setWishList(product);
   };
+
+  const handleQuantity = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (isNaN(parseFloat(e.target.value))) {
+      setQuantity(0);
+    } else {
+      setQuantity(parseFloat(e.target.value));
+    }
+  };
+
   if (isLoading) return <Loading />;
   return (
     <div className="product-detail main">
@@ -54,20 +63,38 @@ const page = (context: any) => {
             </div>
             <div className="product-detail__content">
               <h3>{product.attributes.name}</h3>
-              <span>Trong kho: {product.attributes.quantity}</span>
               <span className="price">
                 Giá: {fomatCurrency(product.attributes.price)}
               </span>
+              <div
+                className={`${
+                  !isMore ? "" : "more"
+                } product-detail__content__des`}
+              >
+                {product.attributes.description}
+              </div>
+              <div
+                className="product-detail__content__btn"
+                onClick={() => setMore(!isMore)}
+              >
+                {!isMore ? "Xem thêm" : "ẩn bớt"}
+              </div>
+              <span>Trong kho: {product.attributes.quantity}</span>
+
               <div className="quantity">
                 <p>Số lượng: </p>
-                <span onClick={() => setQuantity(quantity - 1)}>-</span>
+                <span
+                  onClick={() =>
+                    setQuantity(quantity - 1 > 0 ? quantity - 1 : quantity)
+                  }
+                >
+                  -
+                </span>
                 <span>
                   <input
                     type="tel"
                     value={quantity.toString()}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                      setQuantity(parseFloat(e.currentTarget.value))
-                    }
+                    onChange={(e) => handleQuantity(e)}
                   />
                 </span>
                 <span onClick={() => setQuantity(quantity + 1)}>+</span>
@@ -87,9 +114,6 @@ const page = (context: any) => {
                   </Button>
                 )}
               </div>
-              <div className="secure">
-                <AiFillCheckCircle /> <span>shop secure, free returns</span>
-              </div>
               <div className="button__wrap">
                 {wishlist.some((item) => item.id === product.id) ? (
                   <Button type="outlineactive" size="lg">
@@ -104,14 +128,11 @@ const page = (context: any) => {
                     Add to wishlist
                   </Button>
                 )}
-                <Button type="outline" size="lg">
-                  Add to compose
-                </Button>
               </div>
             </div>
             <div className="product-detail__text">
               <h4>Description</h4>
-              <p>{product.attributes.description}</p>
+              <p>{product.attributes.html}</p>
             </div>
           </>
         )}

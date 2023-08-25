@@ -18,6 +18,7 @@ const Account = () => {
         <Link href="/user">
           <div className="account-btn">
             <AiOutlineUser size={25} />
+            <span>Tài khoản</span>
           </div>
         </Link>
       ) : (

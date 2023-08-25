@@ -15,7 +15,6 @@ interface IProps {
 
 const FilterItem: React.FC<IProps> = ({ path, title }) => {
   const { data: res, isLoading } = useFetch<IResCategory>(path, path);
-  const [active, setActive] = useState(true);
   const { supplier, category, setCategory, setSupplier } = useProductStore();
 
   const queryClient = useQueryClient();
@@ -45,13 +44,8 @@ const FilterItem: React.FC<IProps> = ({ path, title }) => {
     <div className="filter__wrap">
       <div className="filter__header">
         <span>{title}</span>
-        {active ? (
-          <BsChevronUp onClick={() => setActive(!active)} />
-        ) : (
-          <BsChevronDown onClick={() => setActive(!active)} />
-        )}
       </div>
-      <div className={`filter__list ${active ? "active" : ""}`}>
+      <div className={`filter__list`}>
         {res?.data.map((item, index) => {
           return (
             <div className="filter__list__item" key={index}>

@@ -45,10 +45,10 @@
     }
   }
   &__list {
-    display: none;
+    display: flex;
     margin-top: 14px;
     flex-direction: column;
-    gap: 8px 0;
+    gap: 12px 0;
     @keyframes fade {
       from {
         transform: translateY(-20px);
@@ -60,13 +60,19 @@
       }
     }
     animation: fade 0.1s linear;
-    &.active {
-      display: flex;
-    }
     &__item {
       display: flex;
       align-items: center;
       gap: 0 20px;
+      input {
+        box-shadow: 1px 1px 3px 0px #ccc;
+        width: 15px;
+        height: 15px;
+      }
+      label {
+        cursor: pointer;
+        text-transform: capitalize;
+      }
     }
   }
 }

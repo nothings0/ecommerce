@@ -15,6 +15,7 @@
     flex: 1 1 40%;
     background-color: #fff;
     border-radius: 10px;
+    padding: 10px;
     @include mobile {
       flex: 1 1 100%;
       width: unset;
@@ -36,16 +37,36 @@
     h3 {
       font-size: 25px;
     }
+    &__des {
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      line-height: 1.75rem;
+      color: rgb(106, 106, 106);
+      margin: 25px 0 10px 0;
+      &.more {
+        overflow: unset;
+        -webkit-box-orient: unset;
+        -webkit-line-clamp: unset;
+      }
+    }
+    .price {
+      font-size: 20px;
+      color: #ef262c;
+      font-weight: 500;
+    }
+    &__btn {
+      cursor: pointer;
+      color: var(--main-color);
+    }
     & > span {
       display: block;
-      margin: 10px 0 20px 0;
-      &:nth-child(2) {
-        color: var(--main-color);
-        font-size: 18px;
-      }
+      margin: 20px 0;
     }
     .quantity {
       margin: 8px 0;
+      font-size: 17px;
       p {
         display: inline;
         margin-right: 5px;
@@ -62,13 +83,9 @@
         input {
           width: 20px;
           text-align: center;
+          font-weight: 600;
         }
       }
-    }
-    .secure {
-      display: flex;
-      align-items: center;
-      gap: 0 16px;
     }
     .button__wrap {
       margin: 30px 0 20px 0;

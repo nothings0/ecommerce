@@ -6,6 +6,7 @@ import Link from "next/link";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import useProductStore from "@/zustand/productSlice";
 import { fomatCurrency } from "@/utities";
+import Button from "../Button";
 interface IProps {
   product: IProduct;
   type?: string;
@@ -38,7 +39,23 @@ const ProductCard: React.FC<IProps> = ({ product, type }) => {
           </Link>
           <p>{fomatCurrency(product.attributes.price)}</p>
           <div className="product__item__text__btn">
-            <button>Add to card</button>
+            {active ? (
+              <Button
+                type="outline"
+                size="sm"
+                OnClick={() => handleAdd(product)}
+              >
+                Added
+              </Button>
+            ) : (
+              <Button
+                type="primary"
+                size="sm"
+                OnClick={() => handleAdd(product)}
+              >
+                Add to card
+              </Button>
+            )}
           </div>
         </div>
         <div

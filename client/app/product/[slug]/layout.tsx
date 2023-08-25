@@ -11,11 +11,11 @@ export async function generateMetadata({
   params: { slug },
 }: Params): Promise<Metadata> {
   const data: IResSimpleProduct = await (
-    await fetch(`https://backend-ecommerce-2.onrender.com/api/product/${slug}`)
+    await fetch(`https://backend-ecommerce-2.onrender.com/api/products/${slug}`)
   ).json();
 
   return {
-    title: data?.data?.attributes.name,
+    title: data.data?.attributes.name,
   };
 }
 

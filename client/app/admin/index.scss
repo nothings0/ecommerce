@@ -1,6 +1,9 @@
 .admin {
   position: relative;
   display: flex;
+  .mantine-Navbar-root {
+    z-index: 100;
+  }
   canvas {
     background-color: #fff;
     margin: 2rem 0;

@@ -11,12 +11,14 @@ import {
 import {
   IconGauge,
   IconDeviceDesktopAnalytics,
-  IconUser,
-  IconSettings,
+  IconPackage,
+  IconPlus,
   IconLogout,
 } from "@tabler/icons-react";
 import Link from "next/link";
-// import { MantineLogo } from "@mantine/ds";
+import useUserStore from "@/zustand/userSlice";
+import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 const useStyles = createStyles((theme) => ({
   link: {
@@ -79,13 +81,20 @@ const mockdata = [
     label: "Order",
     path: "/admin/order",
   },
-  { icon: IconUser, label: "Product", path: "/admin/product" },
-  { icon: IconSettings, label: "Create", path: "/admin/create" },
+  { icon: IconPackage, label: "Product", path: "/admin/product" },
+  { icon: IconPlus, label: "Create", path: "/admin/create" },
   //   { icon: IconLogout, label: "Logout" },
 ];
 
 export default function NavbarMinimal() {
   const [active, setActive] = useState(0);
+  const { handleLogout } = useUserStore();
+  const router = useRouter();
+  const handleLogoutUser = () => {
+    handleLogout();
+    router.push("/");
+    Cookies.remove("token", { path: "/", domain: "localhost" });
+  };
 
   const links = mockdata.map((link, index) => (
     <Link href={link.path} key={link.label}>
@@ -106,7 +115,11 @@ export default function NavbarMinimal() {
       </Navbar.Section>
       <Navbar.Section grow>
         <Stack>
-          <NavbarLink icon={IconLogout} label="Logout" />
+          <NavbarLink
+            icon={IconLogout}
+            label="Logout"
+            onClick={handleLogoutUser}
+          />
         </Stack>
       </Navbar.Section>
     </Navbar>

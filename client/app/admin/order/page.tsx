@@ -12,7 +12,7 @@ const Order = () => {
   const { jwt } = useUserStore();
   const query = qs.stringify({
     populate: ["order_details.product.picture_cover", "status"],
-    "filters[status][name][$eq]": "pending",
+    "sort[0]": "order_date:desc",
   });
 
   const { data: res } = useFetchWithPermision<IResOrderServer>(

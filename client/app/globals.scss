@@ -9,7 +9,7 @@
   --header-h: 56px;
   --main-header-h: 145px;
   --main-header-h-mb: 72px;
-  --max-width: 1170px;
+  --max-width: 1280px;
   --primary-color: #3b3733;
   --main-color: #ff6d19;
   --border-radius: 12px;
@@ -91,11 +91,11 @@
   margin: 0;
 }
 .main {
-  margin-top: var(--main-header-h);
-  min-height: 100vh;
+  // margin-top: var(--main-header-h);
+  min-height: 105vh;
   padding-bottom: 40px;
   @include tablet {
-    margin-top: var(--main-header-h-mb) !important;
+    // margin-top: var(--main-header-h-mb) !important;
   }
 }
 html,
@@ -123,5 +123,35 @@ input {
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
+  }
+}
+.not-found {
+  &__container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem 0;
+    height: 60vh;
+    justify-content: space-around;
+    margin: auto;
+    h2 {
+      -webkit-text-fill-color: transparent;
+      background: linear-gradient(90deg, red, orange);
+      -webkit-background-clip: text;
+      font-size: 80px;
+      font-weight: 900;
+    }
+    h3 {
+      font-size: 45px;
+      font-weight: 800;
+    }
+    a {
+      align-items: center;
+      display: flex;
+      font-size: 20px;
+      gap: 0 10px;
+      justify-content: normal;
+      margin-top: 40px;
+    }
   }
 }

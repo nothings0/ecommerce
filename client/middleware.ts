@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import useUserStore from "./zustand/userSlice";
 
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
   let cookie = req.cookies.get("token")?.value;
-
   if (
     pathname.startsWith("/user") ||
     pathname.startsWith("/payment") ||

@@ -8,27 +8,23 @@ import catbanner_04 from "../../assets/catbanner-04.jpg";
 
 const data = [
   {
-    desc: "from $199.99 or $41.62/mo for 24 mo. Footnote",
-    name: "ipad pro 13+",
+    name: "Macbook M2 pro",
     type: "best sale",
     img: catbanner_01,
   },
   {
-    desc: "from $199.99 or $41.62/mo for 24 mo. Footnote",
-    name: "ipad pro 13+",
-    type: "best sale",
-    img: catbanner_02,
-  },
-  {
-    desc: "from $199.99 or $41.62/mo for 24 mo. Footnote",
     name: "ipad pro 13+",
     type: "best sale",
     img: catbanner_03,
   },
   {
-    desc: "from $199.99 or $41.62/mo for 24 mo. Footnote",
-    name: "ipad pro 13+",
-    type: "best sale",
+    name: "smartwatch SE 2023",
+    type: "new released",
+    img: catbanner_02,
+  },
+  {
+    name: "headphone MI2",
+    type: "new released",
     img: catbanner_04,
   },
 ];
@@ -41,7 +37,6 @@ const Banner = () => {
         <div className="banner__grid">
           {data.map((item, index) => (
             <BannerItem
-              desc={item.desc}
               name={item.name}
               type={item.type}
               img={item.img}

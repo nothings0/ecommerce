@@ -29,6 +29,11 @@ interface IProps {
 }
 const BASE_URL = "https://backend-ecommerce-2.onrender.com";
 
+const MdEditor = dynamic(() => import("react-markdown-editor-lite"), {
+  ssr: false,
+});
+const mdParser = new MarkdownIt(/* Markdown-it options */);
+
 const Modify: React.FC<IProps> = ({ props }) => {
   const { jwt } = useUserStore();
   const router = useRouter();
@@ -48,16 +53,12 @@ const Modify: React.FC<IProps> = ({ props }) => {
     `categories`
   );
   const { data: suppliers } = useFetch<IResSupplier>("supplier", `suppliers`);
-  const MdEditor = dynamic(() => import("react-markdown-editor-lite"), {
-    ssr: false,
-  });
+
   useEffect(() => {
     return () => {
       thumb && URL.revokeObjectURL(URL.createObjectURL(thumb));
     };
   }, [thumb]);
-
-  const mdParser = new MarkdownIt(/* Markdown-it options */);
 
   const handleChangeAva = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
@@ -66,9 +67,7 @@ const Modify: React.FC<IProps> = ({ props }) => {
   };
 
   function handleEditorChange({ html, text }: any) {
-    console.log(html, text);
-
-    setProduct((product) => ({ ...product, html: html }));
+    setProduct((product) => ({ ...product, html: text }));
   }
 
   const handleChange = (
@@ -192,7 +191,7 @@ const Modify: React.FC<IProps> = ({ props }) => {
               style={{ height: "500px" }}
               renderHTML={(text) => mdParser.render(text)}
               onChange={handleEditorChange}
-              // value={product.html}
+              value={product.html}
             />
           </div>
         </div>

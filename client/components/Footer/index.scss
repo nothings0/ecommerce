@@ -3,7 +3,7 @@
   color: #fff;
   padding: 40px 0 10px 0;
   &__container {
-    max-width: 1170px;
+    max-width: var(--max-width);
     margin: 0 auto;
     @include tablet {
       padding: 0 15px;

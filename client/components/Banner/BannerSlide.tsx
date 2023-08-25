@@ -1,27 +1,23 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import mainBanner from "../../assets/main-banner.jpg";
-import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+
+// import catbanner_01 from "../../assets/catbanner-01.jpg";
+// import catbanner_02 from "../../assets/catbanner-02.jpg";
+// import catbanner_03 from "../../assets/catbanner-03.jpg";
+import main_01 from "../../assets/slider-2022-10-27-01-36-38-2956.png";
+import main_02 from "../../assets/slider-2022-10-27-01-36-44-4193.png";
 
 const dataSlide = [
   {
-    desc: "from $199.99 or $41.62/mo for 24 mo. Footnote",
-    name: "ipad s13 pro",
-    type: "supercharged for pros",
-    img: mainBanner,
+    name: "Macbook Pro Max",
+    type: "new released",
+    img: main_01,
   },
   {
-    desc: "from $199.99 or $41.62/mo for 24 mo. Footnote",
-    name: "ipad s13 pro",
-    type: "supercharged for pros",
-    img: mainBanner,
-  },
-  {
-    desc: "from $199.99 or $41.62/mo for 24 mo. Footnote",
-    name: "ipad s13 pro",
-    type: "supercharged for pros",
-    img: mainBanner,
+    name: "Headphone JBL Music",
+    type: "new released",
+    img: main_02,
   },
 ];
 
@@ -54,7 +50,6 @@ const BannerSlide: React.FC = () => {
           <div className="banner__slide__item__wrap">
             <p className="banner__slide__item__type">{item.type}</p>
             <h4 className="banner__slide__item__name">{item.name}</h4>
-            <h4 className="banner__slide__item__desc">{item.desc}</h4>
           </div>
         </div>
       ))}

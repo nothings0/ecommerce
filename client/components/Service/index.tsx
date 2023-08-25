@@ -2,17 +2,13 @@ import React from "react";
 import { TbTruckDelivery } from "react-icons/tb";
 import ServiceItem from "./ServiceItem";
 import "./index.scss";
-import {
-  AiOutlineGift,
-  AiOutlinePercentage,
-  AiOutlinePhone,
-} from "react-icons/ai";
+import { AiOutlineGift, AiOutlinePhone } from "react-icons/ai";
 import { RiSecurePaymentFill } from "react-icons/ri";
 
 const serviceData = [
   {
     title: "free shipping",
-    desc: "from all orders over $100",
+    desc: "Free Shipping on Payment",
     Icon: TbTruckDelivery,
   },
   {
@@ -24,11 +20,6 @@ const serviceData = [
     title: "support 24/7",
     desc: "from all orders over $100",
     Icon: AiOutlinePhone,
-  },
-  {
-    title: "affordable prices",
-    desc: "get factory direct price",
-    Icon: AiOutlinePercentage,
   },
   {
     title: "secure payment",
