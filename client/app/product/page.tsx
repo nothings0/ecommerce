@@ -75,7 +75,11 @@ const MainStore = () => {
     <div className="store main">
       <Filter />
       <main className="store__main">
-        <ProductContainer heading={heading()} path={path()} page={_page || 1} />
+        <ProductContainer
+          heading={heading()}
+          path={`products?${path()}`}
+          page={_page || 1}
+        />
       </main>
     </div>
   );
