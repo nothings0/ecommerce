@@ -16,7 +16,8 @@ export default async function handler(
   // const path2 = path1?.replace("%3F", "?");
   // const path = path2?.replace("%3D", "=");
   const queryString = flattenObjectToQueryString(obj);
-  const path = queryString?.replace("path=", "");
+  const path1 = queryString?.replace("/?path", "?path");
+  const path = path1?.replace("path=", "");
   const resp = await fetch(
     `https://backend-ecommerce-2.onrender.com/api/${path}`
   );
