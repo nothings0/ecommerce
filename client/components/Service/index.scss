@@ -18,12 +18,14 @@
     background-color: #fff;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 0 10px;
-    padding: 8px 10px;
+    padding: 8px 16px;
     cursor: pointer;
     box-shadow: 0px 1px 5px #ccc;
     background-color: #fff;
     height: 100px;
+    width: 250px;
     @include tablet {
       flex: 1;
       padding: 6px 8px;
@@ -36,6 +38,7 @@
       h4 {
         font-weight: 600;
         font-size: 14px;
+        margin-bottom: 10px;
         @include mobile {
           font-size: 12px;
         }

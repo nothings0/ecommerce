@@ -12,7 +12,7 @@ const Email = () => {
         <h4>Get our latest offer</h4>
         <div className="email__contact">
           <div className="input">
-            <input type="text" placeholder="your email" />
+            <input type="text" placeholder="Type your email" />
             <Button type="primary" size="md">
               Submit
             </Button>

@@ -10,7 +10,7 @@ const URL = "https://backend-ecommerce-2.onrender.com";
 const CategoryItem: React.FC<IProps> = ({ category }) => {
   return (
     <div className="category__item">
-      <Link href={`/category/${category.attributes.slug}`}>
+      <Link href={`/product?category=${category.attributes.slug}`}>
         <div className="category__item__text">{category.attributes.name}</div>
         <Image
           src={`${URL}${category.attributes.img_cover.data.attributes.url}`}

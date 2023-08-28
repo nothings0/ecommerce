@@ -47,9 +47,9 @@ const MainStore = () => {
   };
 
   return (
-    <div className="store">
+    <div className="store main">
       <Filter />
-      <main className="store__main main">
+      <main className="store__main">
         <ProductContainer heading={heading()} path={path()} page={_page || 1} />
       </main>
     </div>

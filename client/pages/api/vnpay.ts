@@ -44,8 +44,8 @@ function sortObject(obj: VnpParams): any {
 }
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const ipAddr = "14.191.250.7";
-
+  const ipAddr =
+    (req.headers["x-forwarded-for"] as string) || req.socket.remoteAddress!;
   const tmnCode = process.env.REACT_APP_TMNCODE!;
   //   const tmnCode = "AH7U74KB";
   const secretKey = process.env.REACT_APP_SECRET_KEY!;
@@ -57,7 +57,10 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const money = Number(req.query.amount);
   const createDate = dateFormat(date, "yyyymmddHHmmss");
   const orderId = dateFormat(date, "HHmmss");
-  const expDate = dateFormat(date.getTime() + 15 * 60 * 1000, "yyyymmddHHmmss");
+  const expDate = dateFormat(
+    new Date(date.getTime() + 15 * 60 * 1000),
+    "yyyymmddHHmmss"
+  );
   const amount = money;
   const bankCode = "NCB";
 
