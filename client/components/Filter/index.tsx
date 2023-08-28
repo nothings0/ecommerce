@@ -5,8 +5,8 @@ import FilterItem from "./FilterItem";
 const Filter = () => {
   return (
     <div className="filter">
-      <FilterItem path="suppliers" title="Hãng" />
-      <FilterItem path="categories" title="Danh mục" />
+      <FilterItem path="suppliers?" title="Hãng" />
+      <FilterItem path="categories?" title="Danh mục" />
     </div>
   );
 };

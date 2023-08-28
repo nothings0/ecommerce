@@ -19,33 +19,22 @@ const FilterItem: React.FC<IProps> = ({ path, title }) => {
   const queryClient = useQueryClient();
 
   const handleSetSearch = (value: string) => {
-    if (path === "suppliers") {
+    if (path === "suppliers?") {
+      console.log("hear");
+
       if (value === supplier) {
         setSupplier("");
-        // const query = { ...searchParams, supplier: "" };
-        // console.log(query);
-
         queryClient.invalidateQueries("suppliers");
       } else {
         setSupplier(value);
-        // const query = { ...searchParams, supplier: value };
-        // console.log(query);
-        // router.push(`/product?${query}`);
         queryClient.invalidateQueries("suppliers");
       }
     } else {
       if (value === category) {
         setCategory("");
-        // const query = { ...searchParams, category: "" };
-        // console.log(query);
-        // router.push(`/product?${query}`);
         queryClient.invalidateQueries("category");
       } else {
         setCategory(value);
-        // const query = { ...searchParams, category: value };
-        // console.log(query);
-
-        // router.push(`/product?${query}`);
         queryClient.invalidateQueries("category");
       }
     }
