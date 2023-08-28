@@ -4,9 +4,15 @@ import ProductContainer from "@/components/ProductContainer";
 import React from "react";
 import "./index.scss";
 import useProductStore from "@/zustand/productSlice";
+import qs from "querystring";
 
 const page = () => {
   const { wishlist } = useProductStore();
+  const query = qs.stringify({
+    populate: "*",
+    "pagination[page]": 1,
+    "pagination[pageSize]": 18,
+  });
   return (
     <div className="wishlist">
       {wishlist.length > 0 && (
@@ -21,7 +27,7 @@ const page = () => {
       )}
       <ProductContainer
         heading="suggest collection"
-        path="products?populate=*&pagination[page]=1&pagination[pageSize]=18"
+        path={`products?${query}`}
       />
     </div>
   );

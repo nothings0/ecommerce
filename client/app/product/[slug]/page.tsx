@@ -10,6 +10,7 @@ import ProductContainer from "@/components/ProductContainer";
 import { fomatCurrency } from "@/utities";
 import Link from "next/link";
 import Loading from "@/app/loading";
+import qs from "querystring";
 
 const URL = "https://backend-ecommerce-2.onrender.com";
 const page = (context: any) => {
@@ -42,6 +43,12 @@ const page = (context: any) => {
       setQuantity(parseFloat(e.target.value));
     }
   };
+
+  const query = qs.stringify({
+    populate: "*",
+    "pagination[page]": 1,
+    "pagination[pageSize]": 12,
+  });
 
   if (isLoading) return <Loading />;
   return (
@@ -139,7 +146,7 @@ const page = (context: any) => {
       </div>
       <ProductContainer
         heading="suggestion collection"
-        path="products?populate=*&pagination[pageSize]=12"
+        path={`products?${query}`}
       />
     </div>
   );
