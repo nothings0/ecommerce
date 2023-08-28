@@ -5,6 +5,7 @@ import ProductContainer from "@/components/ProductContainer";
 import { useSearchParams } from "next/navigation";
 import "./index.scss";
 import useProductStore from "@/zustand/productSlice";
+import qs from "querystring";
 
 const MainStore = () => {
   const params = useSearchParams();
@@ -25,13 +26,37 @@ const MainStore = () => {
 
   const path = () => {
     if (category && supplier) {
-      return `products?populate=*&filters[supplier_id][name][$eq]=${supplier}&filters[category_id][slug][$eq]=${category}&pagination[page]=${_page}&pagination[pageSize]=18`;
+      // `products?populate=*&filters[supplier_id][name][$eq]=${supplier}&filters[category_id][slug][$eq]=${category}&pagination[page]=${_page}&pagination[pageSize]=18`;
+      return qs.stringify({
+        populate: "*",
+        "pagination[page]": _page,
+        "pagination[pageSize]": 18,
+        "filters[category_id][slug][$eq]": category,
+        "filters[supplier_id][name][$eq]": supplier,
+      });
     } else if (supplier) {
-      return `products?populate=*&filters[supplier_id][name][$eq]=${supplier}&pagination[page]=${_page}&pagination[pageSize]=18`;
+      // return `products?populate=*&filters[supplier_id][name][$eq]=${supplier}&pagination[page]=${_page}&pagination[pageSize]=18`;
+      return qs.stringify({
+        populate: "*",
+        "pagination[page]": _page,
+        "pagination[pageSize]": 18,
+        "filters[supplier_id][name][$eq]": supplier,
+      });
     } else if (category) {
-      return `products?populate=*&filters[category_id][slug][$eq]=${category}&pagination[page]=${_page}&pagination[pageSize]=18`;
+      // return `products?populate=*&filters[category_id][slug][$eq]=${category}&pagination[page]=${_page}&pagination[pageSize]=18`;
+      return qs.stringify({
+        populate: "*",
+        "pagination[page]": _page,
+        "pagination[pageSize]": 18,
+        "filters[category_id][slug][$eq]": category,
+      });
     } else {
-      return `products?populate=*&pagination[page]=${_page}&pagination[pageSize]=18`;
+      // return `products?populate=*&pagination[page]=${_page}&pagination[pageSize]=18`;
+      return qs.stringify({
+        populate: "*",
+        "pagination[page]": _page,
+        "pagination[pageSize]": 18,
+      });
     }
   };
   const heading = () => {
