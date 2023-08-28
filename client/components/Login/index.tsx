@@ -6,7 +6,7 @@ import Button from "../Button";
 import "./index.scss";
 import useUserStore from "@/zustand/userSlice";
 import Cookies from "js-cookie";
-import axiosClient from "@/config/axiosConfig";
+import { axiosPrimary } from "@/config/axiosConfig";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -37,7 +37,7 @@ const Login: React.FC = () => {
           identifier: values.username,
         };
         try {
-          const res = await axiosClient.post("/auth/local", data);
+          const res = await axiosPrimary.post("/auth/local", data);
           handleLogin(res.data);
           Cookies.set("token", res.data.jwt, {
             expires: 7,

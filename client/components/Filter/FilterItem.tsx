@@ -1,7 +1,6 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import useProductStore from "../../zustand/productSlice";
-import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import "./index.scss";
 import useFetch from "@/app/Hooks/useFetch";
 import { IResCategory } from "@/type";
@@ -23,17 +22,30 @@ const FilterItem: React.FC<IProps> = ({ path, title }) => {
     if (path === "suppliers") {
       if (value === supplier) {
         setSupplier("");
+        // const query = { ...searchParams, supplier: "" };
+        // console.log(query);
+
         queryClient.invalidateQueries("suppliers");
       } else {
         setSupplier(value);
+        // const query = { ...searchParams, supplier: value };
+        // console.log(query);
+        // router.push(`/product?${query}`);
         queryClient.invalidateQueries("suppliers");
       }
     } else {
       if (value === category) {
         setCategory("");
+        // const query = { ...searchParams, category: "" };
+        // console.log(query);
+        // router.push(`/product?${query}`);
         queryClient.invalidateQueries("category");
       } else {
         setCategory(value);
+        // const query = { ...searchParams, category: value };
+        // console.log(query);
+
+        // router.push(`/product?${query}`);
         queryClient.invalidateQueries("category");
       }
     }

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Filter from "@/components/Filter";
 import ProductContainer from "@/components/ProductContainer";
 import { useSearchParams } from "next/navigation";
@@ -9,8 +9,19 @@ import useProductStore from "@/zustand/productSlice";
 const MainStore = () => {
   const params = useSearchParams();
   const _page = Number(params?.get("page"));
+  const _supplier = params?.get("supplier");
+  const _category = params?.get("category");
 
-  const { supplier, category } = useProductStore();
+  const { supplier, category, setCategory, setSupplier } = useProductStore();
+
+  useEffect(() => {
+    if (_supplier) {
+      setSupplier(_supplier);
+    }
+    if (_category) {
+      setCategory(_category);
+    }
+  }, [_category, _supplier]);
 
   const path = () => {
     if (category && supplier) {

@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
-import axiosClient from "@/config/axiosConfig";
+import { axiosPrimary } from "@/config/axiosConfig";
 
 export default function useFetchWithPermision<T = unknown>(
   path: string,
@@ -17,7 +17,7 @@ export default function useFetchWithPermision<T = unknown>(
       return;
     }
     const getProduct = async () => {
-      const res = await axiosClient.get(`${path}`, {
+      const res = await axiosPrimary.get(`${path}`, {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },

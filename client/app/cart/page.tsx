@@ -3,16 +3,11 @@ import React, { useEffect, useState } from "react";
 import CartItem from "./CartItem";
 import PayBox from "./PayBox";
 import "./index.scss";
-import { IOrder, IProduct } from "@/type";
+import { IOrder } from "@/type";
 import { BsTrash } from "react-icons/bs";
 import useProductStore from "@/zustand/productSlice";
 import Modal from "@/components/Modal";
 import useOrderStore from "@/zustand/orderSlice";
-
-interface INewOrder {
-  product: IProduct | null;
-  quantity: number | null;
-}
 
 const MainCart = () => {
   const [isCheckedAll, setIsCheckedAll] = useState<boolean>(false);
@@ -28,6 +23,10 @@ const MainCart = () => {
       product: item,
       quantity: 1,
       isChecked: false,
+      deliveryType: {
+        id: 1,
+        text: "Thanh toán tiền mặt khi nhận hàng",
+      },
     }));
     setOrder(orderBefore);
   }, [cart]);
@@ -43,7 +42,7 @@ const MainCart = () => {
     const newOrder: IOrder[] = [];
     arr.forEach((item) => {
       if (item.isChecked) {
-        let newObj: INewOrder = {
+        let newObj: IOrder = {
           product: item.product,
           quantity: item.quantity,
         };
@@ -62,7 +61,7 @@ const MainCart = () => {
     const newOrder: IOrder[] = [];
     arr.forEach((item) => {
       if (item.isChecked) {
-        let newObj: INewOrder = {
+        let newObj: IOrder = {
           product: item.product,
           quantity: item.quantity,
         };
@@ -93,7 +92,7 @@ const MainCart = () => {
     const newOrder: IOrder[] = [];
     arr.forEach((item) => {
       if (item.isChecked) {
-        let newObj: INewOrder = {
+        let newObj: IOrder = {
           product: item.product,
           quantity: item.quantity,
         };

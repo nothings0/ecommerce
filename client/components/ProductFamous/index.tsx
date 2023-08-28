@@ -4,7 +4,7 @@ import ProductFamousItem from "./ProductFamousItem";
 import "./index.scss";
 import axiosClient from "@/config/axiosConfig";
 const getProduct = async () => {
-  const res = await axiosClient.get("/product-hots?populate=*");
+  const res = await axiosClient.get(`?path=product-hots?populate=*`);
   return res.data;
 };
 

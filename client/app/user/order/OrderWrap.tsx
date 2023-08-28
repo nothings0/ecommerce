@@ -17,10 +17,11 @@ const OrderWrap: React.FC<IProps> = ({ type }) => {
     populate: ["order_details.product.picture_cover", "status"],
   });
   const { data: res } = useFetchWithPermision<IResOrderServer>(
+    // `/orders?${query}/type`,
     `/orders?${query}${
       type === "all" ? "" : `&filters[status][name][$eq]=${type}`
     }`,
-    jwt
+    jwt!
   );
   return (
     <>

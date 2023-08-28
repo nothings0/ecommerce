@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Button from "@/components/Button";
+import useOrderStore from "@/zustand/orderSlice";
 
 const payments = [
   {
@@ -8,7 +9,7 @@ const payments = [
     id: 1,
   },
   {
-    text: "Thanh toán bằng Viettel Money",
+    text: "Thanh toán bằng VN PAY",
     id: 2,
   },
   {
@@ -30,16 +31,23 @@ interface IProps {
 }
 
 const PaymentForm: React.FC<IProps> = ({ onHandleIndex }) => {
-  const [deliveryType, setDeliveryType] = useState<string>();
+  const { setDeliveryType: onSetDeliveryType } = useOrderStore();
 
-  const handlePayments = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDeliveryType(e.target.value);
+  const [deliveryType, setDeliveryType] = useState<{
+    text: string;
+    id: number;
+  }>();
+
+  const handlePayments = (text: string, id: number) => {
+    setDeliveryType({ id, text });
   };
 
   const handleGoOn = () => {
     if (!deliveryType) {
       alert("vui lòng chọn hình thức thanh toán");
       return;
+    } else {
+      onSetDeliveryType(deliveryType);
     }
     onHandleIndex("dec");
   };
@@ -50,15 +58,18 @@ const PaymentForm: React.FC<IProps> = ({ onHandleIndex }) => {
         <h3>Chọn hình thức thanh toán</h3>
         <div className="payment-wrap">
           {payments.map((item, index) => (
-            <div className="payment-item" key={index}>
+            <div
+              className={`payment-item ${index > 2 ? "disable" : ""}`}
+              key={index}
+            >
               <input
                 type="radio"
-                id="input"
+                id={`input-${item.id}`}
                 name="a"
                 value={item.id}
-                onChange={handlePayments}
+                onChange={(e) => handlePayments(item.text, item.id)}
               />
-              <label htmlFor="input">{item.text}</label>
+              <label htmlFor={`input-${item.id}`}>{item.text}</label>
             </div>
           ))}
         </div>

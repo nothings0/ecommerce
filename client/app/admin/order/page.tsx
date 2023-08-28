@@ -17,6 +17,7 @@ const Order = () => {
 
   const { data: res } = useFetchWithPermision<IResOrderServer>(
     `/orders?${query}`,
+    // `/orders?${query}`,
     jwt
   );
   return (

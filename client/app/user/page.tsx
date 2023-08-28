@@ -12,7 +12,11 @@ import useUserStore from "@/zustand/userSlice";
 
 const User = () => {
   const { jwt } = useUserStore();
-  const { data } = useFetchWithPermision<IUser>("/users/me", jwt);
+  const { data } = useFetchWithPermision<IUser>(
+    "/users/me",
+    // , "/users/me"
+    jwt
+  );
 
   // const updateUser = async () => {
   //   try {

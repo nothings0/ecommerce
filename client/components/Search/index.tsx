@@ -144,7 +144,7 @@ const Search = () => {
                         <ul className="search__menu--drop-list">
                           {dropDown.map((item) => (
                             <Link
-                              href={`/category/${item.slug}`}
+                              href={`/product?category=${item.slug}`}
                               className="search__menu--drop-item"
                               key={item.id}
                             >

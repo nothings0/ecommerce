@@ -83,7 +83,7 @@ const BottomBar = () => {
           <div className={`drop-down ${active ? "active" : ""}`} ref={menuRef}>
             {dropDown.map((item) => (
               <Link
-                href={`/category/${item.slug}`}
+                href={`/product?category=${item.slug}`}
                 className="drop-down--item"
                 key={item.id}
               >

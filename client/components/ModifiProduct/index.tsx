@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Button from "@/components/Button";
 import "./index.scss";
 import Image from "next/image";
-import axiosClient from "@/config/axiosConfig";
+import { axiosPrimary } from "@/config/axiosConfig";
 import { useRouter } from "next/navigation";
 import { IResSupplier, IResCategory, IProduct } from "@/type";
 import useFetch from "@/app/Hooks/useFetch";
@@ -82,13 +82,13 @@ const Modify: React.FC<IProps> = ({ props }) => {
     try {
       const formData = new FormData();
       formData.append("files", thumb!);
-      const res = await axiosClient.post("/upload", formData, {
+      const res = await axiosPrimary.post("/upload", formData, {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },
       });
       const data = { ...product, picture_cover: res.data[0].id };
-      await axiosClient.post(
+      await axiosPrimary.post(
         `/products`,
         { data },
         {

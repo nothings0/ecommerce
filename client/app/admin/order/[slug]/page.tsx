@@ -8,7 +8,7 @@ import "@/app/user/order/[slug]/index.scss";
 import Image from "next/image";
 import Button from "@/components/Button";
 import moment from "moment";
-import axiosClient from "@/config/axiosConfig";
+import { axiosPrimary } from "@/config/axiosConfig";
 import { useRouter } from "next/navigation";
 import Modal from "@/components/Modal";
 import Link from "next/link";
@@ -27,6 +27,7 @@ const OrderDetail = (context: any) => {
   });
   const { data: res } = useFetchWithPermision<IResAOrderServer>(
     `/orders/${slug}?${query}`,
+    // `/orders/${slug}?${query}`,
     jwt
   );
 
@@ -46,7 +47,7 @@ const OrderDetail = (context: any) => {
 
   const handleOrder = async (id: number, state: number) => {
     try {
-      await axiosClient.put(
+      await axiosPrimary.put(
         `/orders/${id}`,
         {
           state,

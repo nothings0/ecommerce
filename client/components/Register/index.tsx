@@ -6,7 +6,7 @@ import "./index.scss";
 import { useRouter } from "next/navigation";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import axiosClient from "@/config/axiosConfig";
+import { axiosPrimary } from "@/config/axiosConfig";
 
 const Register: React.FC = () => {
   const router = useRouter();
@@ -46,7 +46,7 @@ const Register: React.FC = () => {
           password: values.password,
         };
         try {
-          await axiosClient.post("/auth/local/register", newUser);
+          await axiosPrimary.post("/auth/local/register", newUser);
           router.push("/login");
         } catch (error: any) {
           setError(error.response.data.error.message);

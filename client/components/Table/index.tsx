@@ -14,7 +14,11 @@ const Table = () => {
   const [user, setUser] = useState<IUser>();
 
   const { jwt } = useUserStore();
-  const { data } = useFetchWithPermision<IUser[]>("users", jwt);
+  const { data } = useFetchWithPermision<IUser[]>(
+    // "users",
+    "/users",
+    jwt
+  );
 
   const handleUser = (dataUser: IUser, x: number) => {
     setOpen(true);
