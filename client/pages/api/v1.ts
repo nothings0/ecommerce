@@ -14,6 +14,8 @@ export default async function handler(
   const obj = req.query;
 
   const path = flattenObjectToQueryString(obj);
+  console.log(path);
+
   const resp = await fetch(
     `https://backend-ecommerce-2.onrender.com/api/${path}`
   );

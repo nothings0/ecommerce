@@ -77,7 +77,7 @@ const MainStore = () => {
       <main className="store__main">
         <ProductContainer
           heading={heading()}
-          path={`products?${path()}`}
+          path={`products/?${path()}`}
           page={_page || 1}
         />
       </main>
