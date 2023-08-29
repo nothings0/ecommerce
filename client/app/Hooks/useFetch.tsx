@@ -8,7 +8,7 @@ export default function useFetch<T = unknown>(
   option?: {}
 ) {
   const fetch = async (): Promise<T> => {
-    const res = await axiosClient.get(`?${path}`);
+    const res = await axiosClient.get(`/${path}`);
     return res.data;
   };
 

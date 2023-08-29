@@ -31,8 +31,8 @@ const MainStore = () => {
         populate: "*",
         "pagination[page]": _page,
         "pagination[pageSize]": 18,
-        // "filters[category_id][slug][$eq]": category,
-        // "filters[supplier_id][name][$eq]": supplier,
+        "filters[category_id][slug][$eq]": category,
+        "filters[supplier_id][name][$eq]": supplier,
       });
     } else if (supplier) {
       // return `products?populate=*&filters[supplier_id][name][$eq]=${supplier}&pagination[page]=${_page}&pagination[pageSize]=18`;
@@ -40,7 +40,7 @@ const MainStore = () => {
         populate: "*",
         "pagination[page]": _page,
         "pagination[pageSize]": 18,
-        // "filters[supplier_id][name][$eq]": supplier,
+        "filters[supplier_id][name][$eq]": supplier,
       });
     } else if (category) {
       // return `products?populate=*&filters[category_id][slug][$eq]=${category}&pagination[page]=${_page}&pagination[pageSize]=18`;

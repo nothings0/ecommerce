@@ -19,8 +19,6 @@ const FilterItem: React.FC<IProps> = ({ path, title }) => {
 
   const handleSetSearch = (value: string) => {
     if (path === "suppliers?") {
-      console.log("hear");
-
       if (value === supplier) {
         setSupplier("");
         queryClient.invalidateQueries("suppliers");

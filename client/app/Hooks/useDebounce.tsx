@@ -5,7 +5,7 @@ export default function useDebounce<T = unknown>(path: string, delay: number) {
   const [data, setData] = useState<T | null>(null);
   const fetchData = async () => {
     if (!path) return;
-    const res = await axiosClient.get(`?${path}`);
+    const res = await axiosClient.get(`/${path}`);
     const resData: T = res.data;
     setData(resData);
   };
