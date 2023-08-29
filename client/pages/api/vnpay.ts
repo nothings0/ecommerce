@@ -58,7 +58,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const createDate = dateFormat(date, "yyyymmddHHmmss");
   const orderId = dateFormat(date, "HHmmss");
   const expDate = dateFormat(
-    new Date(date.getTime() + 15 * 60 * 1000),
+    new Date(date.getTime() + 60 * 60 * 1000),
     "yyyymmddHHmmss"
   );
   const amount = money;
