@@ -44,7 +44,7 @@ const Login: React.FC = () => {
             sameSite: "strict",
             secure: true,
           });
-          router.back();
+          router.push("/");
         } catch (error: any) {
           setError(error.response.data.error.message);
         }
