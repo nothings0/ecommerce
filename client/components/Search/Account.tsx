@@ -5,12 +5,12 @@ import "./account.scss";
 import useUserStore from "@/zustand/userSlice";
 
 const Account = () => {
-  const { user } = useUserStore((state) => state);
+  const { user } = useUserStore();
   const [userState, setUserState] = useState<any>();
 
   useEffect(() => {
     setUserState(user);
-  }, [userState]);
+  }, [userState, user]);
 
   return (
     <>

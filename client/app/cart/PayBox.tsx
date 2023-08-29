@@ -11,7 +11,7 @@ const PayBox = () => {
 
   useEffect(() => {
     setOrderState(order);
-  }, [orderState]);
+  }, [orderState, order]);
 
   const handleTotal = (order: IOrder[]) => {
     let total = 0;
