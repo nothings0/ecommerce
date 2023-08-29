@@ -16,7 +16,7 @@ interface VnpParams {
   vnp_ReturnUrl: string;
   vnp_IpAddr: string;
   vnp_CreateDate: string;
-  vnp_ExpireDate: string;
+  // vnp_ExpireDate: string;
   vnp_BankCode: string;
   vnp_SecureHash: string;
 }
@@ -81,7 +81,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     vnp_ReturnUrl: returnUrl,
     vnp_IpAddr: ipAddr,
     vnp_CreateDate: createDate,
-    vnp_ExpireDate: expDate,
+    // vnp_ExpireDate: expDate,
     vnp_BankCode: bankCode,
     vnp_SecureHash: "",
   };
