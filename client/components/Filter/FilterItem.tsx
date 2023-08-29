@@ -5,7 +5,6 @@ import "./index.scss";
 import useFetch from "@/app/Hooks/useFetch";
 import { IResCategory } from "@/type";
 import { useQueryClient } from "react-query";
-import Loading from "../Skeleton";
 
 interface IProps {
   path: string;
@@ -39,7 +38,7 @@ const FilterItem: React.FC<IProps> = ({ path, title }) => {
       }
     }
   };
-  if (isLoading) return <Loading />;
+  if (isLoading) return <></>;
 
   return (
     <div className="filter__wrap">
