@@ -24,7 +24,7 @@ const SideBar: React.FC<IProps> = ({ data }) => {
   const handleLogoutUser = () => {
     handleLogout();
     router.push("/");
-    Cookies.remove("token", { path: "/", domain: "localhost" });
+    Cookies.remove("token", { path: "/", domain: "x-ecommerce.vercel.app" });
   };
 
   return (
