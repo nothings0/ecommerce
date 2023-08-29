@@ -11,8 +11,9 @@ import { fomatCurrency } from "@/utities";
 import Link from "next/link";
 import Loading from "@/app/loading";
 import qs from "querystring";
-import parse from "html-react-parser";
+import MarkdownIt from "markdown-it";
 
+const mdParser = new MarkdownIt(/* Markdown-it options */);
 const URL = "https://backend-ecommerce-2.onrender.com";
 const page = (context: any) => {
   const { slug } = context.params;
@@ -140,7 +141,7 @@ const page = (context: any) => {
             </div>
             <div className="product-detail__text">
               <h4>Description</h4>
-              <p>{parse(product.attributes.html!)}</p>
+              <p>{mdParser.render(product.attributes.html!)}</p>
             </div>
           </>
         )}
