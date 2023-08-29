@@ -2,6 +2,11 @@ import { IProductFamous } from "@/type";
 import Image from "next/image";
 import React from "react";
 
+// import fm1 from "@/assets/famous-1.webp"
+// import fm2 from "@/assets/famous-2.webp"
+// import fm3 from "@/assets/famous-3.webp"
+// import fm4 from "@/assets/famous-4.webp"
+
 interface IProps {
   data: IProductFamous;
 }
