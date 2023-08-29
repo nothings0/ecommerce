@@ -16,9 +16,7 @@ export default async function handler(
   const path = flattenObjectToQueryString(obj);
   console.log(path);
 
-  const resp = await fetch(
-    `https://backend-ecommerce-2.onrender.com/api/${path}`
-  );
+  const resp = await fetch(`https://backend-md7c.onrender.com/api/${path}`);
   const data = await resp.json();
   res.status(200).json(data);
 }

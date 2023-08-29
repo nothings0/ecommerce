@@ -11,7 +11,7 @@ const configPayment = {
   vat: 0.05,
 };
 
-const URL = "https://backend-ecommerce-2.onrender.com";
+const URL = "https://backend-md7c.onrender.com";
 const OrderDetail = () => {
   const { order } = useOrderStore();
   const [active, setActive] = useState<boolean>(false);

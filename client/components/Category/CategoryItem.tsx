@@ -6,7 +6,7 @@ import React from "react";
 interface IProps {
   category: ICategory;
 }
-const URL = "https://backend-ecommerce-2.onrender.com";
+const URL = "https://backend-md7c.onrender.com";
 const CategoryItem: React.FC<IProps> = ({ category }) => {
   return (
     <div className="category__item">

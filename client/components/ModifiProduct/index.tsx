@@ -27,7 +27,7 @@ interface IProducts {
 interface IProps {
   props?: IProduct;
 }
-const BASE_URL = "https://backend-ecommerce-2.onrender.com";
+const BASE_URL = "https://backend-md7c.onrender.com";
 
 const MdEditor = dynamic(() => import("react-markdown-editor-lite"), {
   ssr: false,

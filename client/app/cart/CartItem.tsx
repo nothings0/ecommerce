@@ -13,7 +13,7 @@ interface IProps {
   onHandleQuantity: (quantity: number, id: number) => void;
 }
 
-const URL = "https://backend-ecommerce-2.onrender.com";
+const URL = "https://backend-md7c.onrender.com";
 const CartItem: React.FC<IProps> = ({ onChange, data, onHandleQuantity }) => {
   const { product, quantity, isChecked } = data;
   const [currentQuantity, setCurrentQuantity] = useState<number>(quantity!);

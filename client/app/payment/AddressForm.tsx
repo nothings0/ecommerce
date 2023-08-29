@@ -46,7 +46,7 @@ const AddressForm: React.FC<IProps> = ({ onHandleIndex }) => {
     };
     try {
       const res = await axios.put(
-        `https://backend-ecommerce-2.onrender.com/api/users/${user?.id}`,
+        `https://backend-md7c.onrender.com/api/users/${user?.id}`,
         {
           address: address,
           name,

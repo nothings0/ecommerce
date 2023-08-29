@@ -15,7 +15,7 @@ import MarkdownIt from "markdown-it";
 import parse from "html-react-parser";
 
 const mdParser = new MarkdownIt({ html: true });
-const URL = "https://backend-ecommerce-2.onrender.com";
+const URL = "https://backend-md7c.onrender.com";
 const page = (context: any) => {
   const { slug } = context.params;
   const { data: res, isLoading } = useFetch<IResSimpleProduct>(

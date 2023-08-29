@@ -5,7 +5,7 @@ import React from "react";
 interface IProps {
   data: IProductFamous;
 }
-const URL = "https://backend-ecommerce-2.onrender.com";
+const URL = "https://backend-md7c.onrender.com";
 
 const ProductFamousItem: React.FC<IProps> = ({ data }) => {
   return (

@@ -11,7 +11,7 @@ export async function generateMetadata({
   params: { slug },
 }: Params): Promise<Metadata> {
   const data: IResSimpleProduct = await (
-    await fetch(`https://backend-ecommerce-2.onrender.com/api/products/${slug}`)
+    await fetch(`https://backend-md7c.onrender.com/api/products/${slug}`)
   ).json();
 
   return {

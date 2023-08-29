@@ -11,7 +11,7 @@ interface IProps {
   product: IProduct;
   onHandleDelete: (id: number) => void;
 }
-const URL = "https://backend-ecommerce-2.onrender.com";
+const URL = "https://backend-md7c.onrender.com";
 const ProductItem: React.FC<IProps> = ({ product, onHandleDelete }) => {
   const [isOpen, setOpen] = useState<boolean>(false);
   const onHandleDeleteA = () => {

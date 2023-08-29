@@ -8,7 +8,7 @@ interface IProps {
   type: string;
   quantity: number;
 }
-const URL = "https://backend-ecommerce-2.onrender.com";
+const URL = "https://backend-md7c.onrender.com";
 const OrderItem: React.FC<IProps> = ({ data, type, quantity }) => {
   return (
     <div className="order-item">
