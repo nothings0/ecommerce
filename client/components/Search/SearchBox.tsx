@@ -12,7 +12,7 @@ const SearchBox = () => {
   const [active, setActive] = useState<boolean>(false);
 
   const { data } = useDebounce<IResProduct>(
-    `${value ? `/products?populate=*&filters[name][$contains]=${value}` : ""}`,
+    `${value ? `products?populate=*&filters[name][$contains]=${value}` : ""}`,
     1200
   );
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
