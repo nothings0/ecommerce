@@ -13,7 +13,7 @@ import Loading from "@/app/loading";
 import qs from "querystring";
 import MarkdownIt from "markdown-it";
 
-const mdParser = new MarkdownIt(/* Markdown-it options */);
+const mdParser = new MarkdownIt({ html: true });
 const URL = "https://backend-ecommerce-2.onrender.com";
 const page = (context: any) => {
   const { slug } = context.params;
