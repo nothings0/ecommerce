@@ -25,6 +25,7 @@
     "dateformat": "^5.0.3",
     "formik": "^2.2.9",
     "hanhchinhvn": "^1.4.0",
+    "html-react-parser": "^4.2.1",
     "js-cookie": "^3.0.1",
     "markdown-it": "^13.0.1",
     "moment": "^2.29.4",

@@ -12,6 +12,7 @@ import Link from "next/link";
 import Loading from "@/app/loading";
 import qs from "querystring";
 import MarkdownIt from "markdown-it";
+import parse from "html-react-parser";
 
 const mdParser = new MarkdownIt({ html: true });
 const URL = "https://backend-ecommerce-2.onrender.com";
@@ -34,9 +35,9 @@ const page = (context: any) => {
     return cart.some((item) => item.id === product?.id);
   };
 
-  const addWishList = (product: IProduct) => {
-    setWishList(product);
-  };
+  // const addWishList = (product: IProduct) => {
+  //   setWishList(product);
+  // };
 
   const handleQuantity = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (isNaN(parseFloat(e.target.value))) {
@@ -141,7 +142,7 @@ const page = (context: any) => {
             </div>
             <div className="product-detail__text">
               <h4>Description</h4>
-              <p>{mdParser.render(product.attributes.html!)}</p>
+              <p>{parse(mdParser.render(product.attributes.html!))}</p>
             </div>
           </>
         )}
