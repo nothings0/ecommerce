@@ -40,7 +40,7 @@ const Login: React.FC = () => {
           const res = await axiosPrimary.post("/auth/local", data);
           handleLogin(res.data);
           Cookies.set("token", res.data.jwt, {
-            expires: 7,
+            expires: 24 * 60 * 60 * 1000,
             sameSite: "strict",
             secure: true,
           });

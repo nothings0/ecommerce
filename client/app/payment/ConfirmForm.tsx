@@ -15,7 +15,7 @@ interface IProps {
 
 const ConfirmForm: React.FC<IProps> = ({ onHandleIndex }) => {
   const { user, jwt } = useUserStore();
-  const { order, deliveryType } = useOrderStore();
+  const { order, deliveryType, removeOrder } = useOrderStore();
   const { removeProduct } = useProductStore();
 
   const [isOpen, setOpen] = useState<boolean>(false);
@@ -32,6 +32,7 @@ const ConfirmForm: React.FC<IProps> = ({ onHandleIndex }) => {
           Authorization: `Bearer ${jwt}`,
         },
       });
+      removeOrder();
       removeProduct(order);
       setOpen(!isOpen);
     } catch (error) {

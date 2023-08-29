@@ -6,7 +6,7 @@ import useUserStore from "@/zustand/userSlice";
 import React, { useEffect } from "react";
 import "./index.scss";
 const page = () => {
-  const { order } = useOrderStore();
+  const { order, removeOrder } = useOrderStore();
   const { removeProduct } = useProductStore();
   const { user, jwt } = useUserStore();
 
@@ -21,6 +21,7 @@ const page = () => {
           Authorization: `Bearer ${jwt}`,
         },
       });
+      removeOrder();
       removeProduct(order);
     } catch (error) {
       console.log(error);

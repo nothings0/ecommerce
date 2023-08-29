@@ -10,6 +10,7 @@ interface ITypeInitState {
   };
   setDeliveryType: (payload: { text: string; id: number }) => void;
   setNewOrder: (payload: IOrder[]) => void;
+  removeOrder: () => void;
 }
 
 const useOrderStore = create<ITypeInitState>()(
@@ -22,6 +23,7 @@ const useOrderStore = create<ITypeInitState>()(
       },
       setDeliveryType: (payload) => set(() => ({ deliveryType: payload })),
       setNewOrder: (payload) => set(() => ({ order: payload })),
+      removeOrder: () => set(() => ({ order: [] })),
     }),
     {
       name: "order",
