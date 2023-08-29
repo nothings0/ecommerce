@@ -12,9 +12,10 @@ interface IProps {
 }
 
 const OrderWrap: React.FC<IProps> = ({ type }) => {
-  const { jwt } = useUserStore();
+  const { jwt, user } = useUserStore();
   const query = qs.stringify({
     populate: ["order_details.product.picture_cover", "status"],
+    "filters[users][id][$eq]": user?.id,
   });
   const { data: res } = useFetchWithPermision<IResOrderServer>(
     // `/orders?${query}/type`,

@@ -86,7 +86,12 @@ const Login: React.FC = () => {
         {error && <p className="errorMsg">{error}</p>}
       </form>
       <div className="login-button">
-        <Button type="primary" size="md" OnClick={handleSubmit}>
+        <Button
+          type="primary"
+          size="md"
+          OnClick={handleSubmit}
+          typeBtn="submit"
+        >
           Login
         </Button>
       </div>

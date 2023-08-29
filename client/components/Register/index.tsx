@@ -117,7 +117,12 @@ const Register: React.FC = () => {
         {error && <p className="errorMsg">{error}</p>}
       </form>
       <div className="register-button">
-        <Button type="primary" size="md" OnClick={handleSubmit}>
+        <Button
+          type="primary"
+          size="md"
+          OnClick={handleSubmit}
+          typeBtn="submit"
+        >
           register
         </Button>
       </div>

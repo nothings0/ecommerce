@@ -8,11 +8,22 @@ interface IProps {
   size?: string;
   children?: string | React.ReactNode;
   type: string;
+  typeBtn?: "button" | "submit" | "reset";
 }
-const Button: React.FC<IProps> = ({ Icon, OnClick, size, children, type }) => {
-
+const Button: React.FC<IProps> = ({
+  Icon,
+  OnClick,
+  size,
+  children,
+  type,
+  typeBtn,
+}) => {
   return (
-    <button className={`button ${size} ${type}`} onClick={OnClick}>
+    <button
+      className={`button ${size} ${type}`}
+      onClick={OnClick}
+      type={typeBtn}
+    >
       {Icon && <Icon />}
       {children}
     </button>
