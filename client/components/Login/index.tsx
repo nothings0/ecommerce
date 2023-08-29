@@ -54,7 +54,7 @@ const Login: React.FC = () => {
   return (
     <div className="login-modal">
       <div className="login-head">Đăng nhập</div>
-      <form action="" className="login-form">
+      <form action="" onSubmit={handleSubmit} className="login-form">
         <div className="login-item">
           <label htmlFor="username">username</label>
           <input

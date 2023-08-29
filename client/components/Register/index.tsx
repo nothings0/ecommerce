@@ -57,7 +57,7 @@ const Register: React.FC = () => {
   return (
     <div className="register-modal">
       <div className="register-head">Đăng ký</div>
-      <form action="" className="register-form">
+      <form action="" onSubmit={handleSubmit} className="register-form">
         <div className="register-item">
           <label htmlFor="username">username</label>
           <input
