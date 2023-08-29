@@ -91,7 +91,7 @@ const Login: React.FC = () => {
         </Button>
       </div>
       <div className="login-link">
-        Bạn chưa có tài khoản ? <Link href="/register">đăng ký tài khoản</Link>
+        Bạn chưa có tài khoản ? <Link href="/register">Đăng ký tài khoản</Link>
       </div>
     </div>
   );

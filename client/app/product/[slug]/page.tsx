@@ -121,7 +121,7 @@ const page = (context: any) => {
                   </Button>
                 )}
               </div>
-              <div className="button__wrap">
+              {/* <div className="button__wrap">
                 {wishlist.some((item) => item.id === product.id) ? (
                   <Button type="outlineactive" size="lg">
                     <Link href="/user/wishlist">View Wishlist</Link>
@@ -135,7 +135,7 @@ const page = (context: any) => {
                     Add to wishlist
                   </Button>
                 )}
-              </div>
+              </div> */}
             </div>
             <div className="product-detail__text">
               <h4>Description</h4>

@@ -92,8 +92,9 @@ export default function NavbarMinimal() {
   const router = useRouter();
   const handleLogoutUser = () => {
     handleLogout();
+    // Cookies.remove("token", { path: "/", domain: "localhost" });
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     router.push("/");
-    Cookies.remove("token", { path: "/", domain: "localhost" });
   };
 
   const links = mockdata.map((link, index) => (

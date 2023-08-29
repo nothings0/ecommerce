@@ -23,7 +23,8 @@ const SideBar: React.FC<IProps> = ({ data }) => {
 
   const handleLogoutUser = () => {
     handleLogout();
-    Cookies.remove("token", { path: "/", domain: "x-ecommerce.vercel.app" });
+    // Cookies.remove("token", { path: "/", domain: "x-ecommerce.vercel.app" });
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     router.push("/");
   };
 
