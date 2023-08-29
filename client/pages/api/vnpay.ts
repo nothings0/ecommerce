@@ -64,7 +64,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const amount = money;
   const bankCode = "NCB";
 
-  const orderInfo = "Thanh toán hóa đơn từ X-Ecommerce";
+  const orderInfo = `Thanh toán hóa đơn từ X-Ecommerce ${orderId}`;
   const orderType = "billpayment";
   const locale = "vn";
   const currCode = "VND";
